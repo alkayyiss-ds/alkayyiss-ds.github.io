@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Muhammad Naufal Al Kayyis — Data Science Portfolio</title>
+  <meta name="description" content="Portfolio of Muhammad Naufal Al Kayyis — Data Science, Machine Learning, and AI projects. Student at PENS, passionate about turning data into insights." />
+  <meta property="og:title" content="Muhammad Naufal Al Kayyis — Data Science Portfolio" />
+  <meta property="og:description" content="Explore projects in ML, Computer Vision, Time Series, and more." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav id="navbar" class="navbar">
+    <div class="nav-container">
+      <a href="#hero" class="nav-logo">
+        <span class="logo-bracket">&lt;</span>
+        <span class="logo-name">Kayyis</span>
+        <span class="logo-bracket"> /&gt;</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#skills" class="nav-link">Skills</a></li>
+        <li><a href="#projects" class="nav-link">Projects</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+      <a href="https://github.com/alkayyiss-ds" target="_blank" class="nav-cta" id="nav-github-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+        GitHub
+      </a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="hero" class="hero">
+    <div class="hero-bg">
+      <div class="grid-overlay"></div>
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge" id="hero-badge">
+        <span class="badge-dot"></span>
+        Available for opportunities
+      </div>
+      <h1 class="hero-title" id="hero-title">
+        <span class="title-greeting">Hi, I'm</span>
+        <span class="title-name">Muhammad Naufal<br/>Al Kayyis</span>
+      </h1>
+      <p class="hero-subtitle" id="hero-subtitle">
+        <span class="typing-text" id="typing-text"></span>
+        <span class="cursor">|</span>
+      </p>
+      <p class="hero-desc" id="hero-desc">
+        Data Science student at <strong>Politeknik Elektronika Negeri Surabaya (PENS)</strong>,
+        building intelligent systems that turn raw data into real-world impact.
+        From competitive ML to AI research.
+      </p>
+      <div class="hero-actions" id="hero-actions">
+        <a href="#projects" class="btn btn-primary">
+          View Projects
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+      </div>
+      <div class="hero-stats" id="hero-stats">
+        <div class="stat-item">
+          <span class="stat-num">6</span>
+          <span class="stat-label">Projects</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-num">3+</span>
+          <span class="stat-label">Competitions</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-num">5+</span>
+          <span class="stat-label">Tech Stacks</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll" id="hero-scroll">
+      <div class="scroll-mouse">
+        <div class="scroll-wheel"></div>
+      </div>
+      <span>Scroll to explore</span>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="section about-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">About Me</span>
+        <h2 class="section-title">Driven by Data,<br/>Powered by Curiosity</h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>
+            I'm a Data Science & Informatics Engineering student at PENS with a strong passion for building end-to-end machine learning systems — from data wrangling and feature engineering to model deployment and documentation.
+          </p>
+          <p>
+            My work spans <strong>Computer Vision</strong>, <strong>Time Series Forecasting</strong>, <strong>Graph ML</strong>, and <strong>NLP</strong>. I actively participate in data competitions (Kaggle, Datathon) and contribute to research-oriented projects in document forensics and AI product development.
+          </p>
+          <p>
+            Beyond technical work, I enjoy translating complex problems into clear <strong>Product Requirements Documents (PRDs)</strong> — bridging the gap between data science and product thinking.
+          </p>
+          <div class="about-cta">
+            <a href="https://github.com/alkayyiss-ds" target="_blank" class="btn btn-outline" id="about-github-btn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+              @alkayyiss-ds
+            </a>
+          </div>
+        </div>
+        <div class="about-cards">
+          <div class="info-card" id="info-education">
+            <div class="info-icon">🎓</div>
+            <div class="info-content">
+              <h4>Education</h4>
+              <p>Teknik Instrumentasi</p>
+              <span>Politeknik Elektronika Negeri Surabaya</span>
+            </div>
+          </div>
+          <div class="info-card" id="info-focus">
+            <div class="info-icon">🧠</div>
+            <div class="info-content">
+              <h4>Focus Areas</h4>
+              <p>Machine Learning · Computer Vision</p>
+              <span>NLP · Time Series · Graph ML</span>
+            </div>
+          </div>
+          <div class="info-card" id="info-competitions">
+            <div class="info-icon">🏆</div>
+            <div class="info-content">
+              <h4>Competitions</h4>
+              <p>Kaggle · BDC 2026 · Datathon</p>
+              <span>VBG Datathon 2026</span>
+            </div>
+          </div>
+          <div class="info-card" id="info-location">
+            <div class="info-icon">📍</div>
+            <div class="info-content">
+              <h4>Location</h4>
+              <p>Surabaya, Indonesia</p>
+              <span>Open to Remote Opportunities</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="section skills-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Technical Skills</span>
+        <h2 class="section-title">Tools & Technologies</h2>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-category" id="skill-languages">
+          <h3 class="skill-cat-title">
+            <span class="skill-cat-icon">💻</span> Languages
+          </h3>
+          <div class="skill-tags">
+            <span class="skill-tag skill-tag--primary">Python</span>
+            <span class="skill-tag skill-tag--primary">R</span>
+            <span class="skill-tag skill-tag--secondary">SQL</span>
+            <span class="skill-tag skill-tag--secondary">JavaScript</span>
+          </div>
+        </div>
+        <div class="skill-category" id="skill-ml">
+          <h3 class="skill-cat-title">
+            <span class="skill-cat-icon">🤖</span> ML / DL Frameworks
+          </h3>
+          <div class="skill-tags">
+            <span class="skill-tag skill-tag--primary">TensorFlow</span>
+            <span class="skill-tag skill-tag--primary">PyTorch</span>
+            <span class="skill-tag skill-tag--primary">scikit-learn</span>
+            <span class="skill-tag skill-tag--secondary">XGBoost</span>
+            <span class="skill-tag skill-tag--secondary">LightGBM</span>
+            <span class="skill-tag skill-tag--secondary">Hugging Face</span>
+          </div>
+        </div>
+        <div class="skill-category" id="skill-data">
+          <h3 class="skill-cat-title">
+            <span class="skill-cat-icon">📊</span> Data & Visualization
+          </h3>
+          <div class="skill-tags">
+            <span class="skill-tag skill-tag--primary">Pandas</span>
+            <span class="skill-tag skill-tag--primary">NumPy</span>
+            <span class="skill-tag skill-tag--primary">Matplotlib</span>
+            <span class="skill-tag skill-tag--secondary">Seaborn</span>
+            <span class="skill-tag skill-tag--secondary">Plotly</span>
+            <span class="skill-tag skill-tag--secondary">Power BI</span>
+          </div>
+        </div>
+        <div class="skill-category" id="skill-tools">
+          <h3 class="skill-cat-title">
+            <span class="skill-cat-icon">🔧</span> Tools & Platforms
+          </h3>
+          <div class="skill-tags">
+            <span class="skill-tag skill-tag--primary">Jupyter</span>
+            <span class="skill-tag skill-tag--primary">Kaggle</span>
+            <span class="skill-tag skill-tag--primary">Git / GitHub</span>
+            <span class="skill-tag skill-tag--secondary">Docker</span>
+            <span class="skill-tag skill-tag--secondary">Apache Airflow</span>
+            <span class="skill-tag skill-tag--secondary">MLflow</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="section projects-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Portfolio</span>
+        <h2 class="section-title">Featured Projects</h2>
+        <p class="section-desc">A selection of ML, AI, and data science projects — from competition notebooks to system design documents.</p>
+      </div>
+
+      <div class="projects-filter" id="projects-filter">
+        <button class="filter-btn active" data-filter="all" id="filter-all">All</button>
+        <button class="filter-btn" data-filter="ml" id="filter-ml">Machine Learning</button>
+        <button class="filter-btn" data-filter="cv" id="filter-cv">Computer Vision</button>
+        <button class="filter-btn" data-filter="nlp" id="filter-nlp">NLP / Graph</button>
+        <button class="filter-btn" data-filter="stats" id="filter-stats">Statistics</button>
+        <button class="filter-btn" data-filter="pm" id="filter-pm">Product</button>
+      </div>
+
+      <div class="projects-grid" id="projects-grid">
+
+        <!-- Project 1: Waste Classification -->
+        <article class="project-card" data-category="ml cv" id="project-waste">
+          <div class="project-card-glow"></div>
+          <div class="project-header">
+            <div class="project-icon project-icon--green">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>
+            </div>
+            <div class="project-badges">
+              <span class="badge badge--competition">BDC 2026</span>
+              <span class="badge badge--ml">Deep Learning</span>
+            </div>
+          </div>
+          <h3 class="project-title">Waste Classification with Deep Learning</h3>
+          <p class="project-desc">Multi-class image classification for automated waste sorting using transfer learning (EfficientNet). End-to-end pipeline with data augmentation, fine-tuning, and competition submission.</p>
+          <div class="project-tech">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">TensorFlow</span>
+            <span class="tech-tag">Transfer Learning</span>
+            <span class="tech-tag">Kaggle</span>
+          </div>
+          <div class="project-footer">
+            <a href="https://github.com/alkayyiss-ds/waste-classification-ml" target="_blank" class="project-link" id="link-waste">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+              View on GitHub
+            </a>
+          </div>
+        </article>
+
+        <!-- Project 2: Traffic Forecasting -->
+        <article class="project-card" data-category="ml" id="project-traffic">
+          <div class="project-card-glow"></div>
+          <div class="project-header">
+            <div class="project-icon project-icon--blue">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </div>
+            <div class="project-badges">
+              <span class="badge badge--ml">Time Series</span>
+              <span class="badge badge--ml">Forecasting</span>
+            </div>
+          </div>
+          <h3 class="project-title">Traffic Speed Forecasting</h3>
+          <p class="project-desc">End-to-end time series forecasting pipeline for urban traffic speed prediction. Combines feature engineering (lag features, rolling stats, cyclical encoding) with gradient boosting and LSTM models.</p>
+          <div class="project-tech">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">LightGBM</span>
+            <span class="tech-tag">LSTM</span>
+            <span class="tech-tag">Time Series</span>
+          </div>
+          <div class="project-footer">
+            <a href="https://github.com/alkayyiss-ds/traffic-speed-forecasting" target="_blank" class="project-link" id="link-traffic">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+              View on GitHub
+            </a>
+          </div>
+        </article>
+
+        <!-- Project 3: Text Tampering -->
+        <article class="project-card project-card--featured" data-category="cv nlp" id="project-tampering">
+          <div class="project-card-glow"></div>
+          <div class="project-featured-label">Research</div>
+          <div class="project-header">
+            <div class="project-icon project-icon--purple">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            </div>
+            <div class="project-badges">
+              <span class="badge badge--research">5-Layer Architecture</span>
+              <span class="badge badge--ml">Transformer + GNN</span>
+            </div>
+          </div>
+          <h3 class="project-title">Text Tampering Detection in Financial Documents</h3>
+          <p class="project-desc">A novel 5-layer pipeline for word-level fraud detection in receipts/invoices: DPText-DETR → Swin-Transformer forensic encoder → Graph Attention Network → DINOv2 contrastive pretraining → Cross-Attention fusion. Evaluated on T-SROIE benchmark.</p>
+          <div class="project-tech">
+            <span class="tech-tag">PyTorch</span>
+            <span class="tech-tag">Transformers</span>
+            <span class="tech-tag">Graph Neural Network</span>
+            <span class="tech-tag">DINOv2</span>
+          </div>
+          <div class="project-footer">
+            <a href="https://github.com/alkayyiss-ds/text-tampering-detection" target="_blank" class="project-link" id="link-tampering">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+              View on GitHub
+            </a>
+          </div>
+        </article>
+
+        <!-- Project 4: Wikipedia -->
+        <article class="project-card" data-category="nlp" id="project-wiki">
+          <div class="project-card-glow"></div>
+          <div class="project-header">
+            <div class="project-icon project-icon--orange">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+            </div>
+            <div class="project-badges">
+              <span class="badge badge--competition">Datathon</span>
+              <span class="badge badge--ml">Graph ML</span>
+            </div>
+          </div>
+          <h3 class="project-title">Wikipedia Next-Click Prediction</h3>
+          <p class="project-desc">Competition solution for predicting Wikipedia navigation links. OCR-based link graph extraction from 3300+ screenshots, followed by LightGBM pairwise ranking with graph distance and TF-IDF features. Handles 446 cold-start articles.</p>
+          <div class="project-tech">
+            <span class="tech-tag">EasyOCR</span>
+            <span class="tech-tag">NetworkX</span>
+            <span class="tech-tag">LightGBM</span>
+            <span class="tech-tag">RapidFuzz</span>
+          </div>
+          <div class="project-footer">
+            <a href="https://github.com/alkayyiss-ds/wikipedia-next-click-prediction" target="_blank" class="project-link" id="link-wiki">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+              View on GitHub
+            </a>
+          </div>
+        </article>
+
+        <!-- Project 5: PRD -->
+        <article class="project-card" data-category="pm" id="project-prd">
+          <div class="project-card-glow"></div>
+          <div class="project-header">
+            <div class="project-icon project-icon--pink">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 12h6M9 15h4"/></svg>
+            </div>
+            <div class="project-badges">
+              <span class="badge badge--pm">Product Management</span>
+            </div>
+          </div>
+          <h3 class="project-title">AI Product Requirements Documents</h3>
+          <p class="project-desc">Structured PRDs for two AI/data products: (1) AI Content Strategy Advisor for TikTok F&B brands — multimodal trend analysis with archetype clustering; (2) Indonesian Traditional Textile Web Catalog — role-based catalog with interactive province map.</p>
+          <div class="project-tech">
+            <span class="tech-tag">Product Thinking</span>
+            <span class="tech-tag">System Design</span>
+            <span class="tech-tag">AI Product</span>
+            <span class="tech-tag">Next.js</span>
+          </div>
+          <div class="project-footer">
+            <a href="https://github.com/alkayyiss-ds/prd-tiktok-trend-analyzer" target="_blank" class="project-link" id="link-prd">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+              View on GitHub
+            </a>
+          </div>
+        </article>
+
+        <!-- Project 6: R Statistics -->
+        <article class="project-card" data-category="stats" id="project-r">
+          <div class="project-card-glow"></div>
+          <div class="project-header">
+            <div class="project-icon project-icon--teal">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            </div>
+            <div class="project-badges">
+              <span class="badge badge--stats">Statistics</span>
+              <span class="badge badge--stats">R Language</span>
+            </div>
+          </div>
+          <h3 class="project-title">R Statistics Mini Projects</h3>
+          <p class="project-desc">A collection of statistical analysis scripts covering probability distributions, hypothesis testing (t-test, ANOVA, chi-square), correlation & regression, best subset selection, and non-parametric methods with visualizations.</p>
+          <div class="project-tech">
+            <span class="tech-tag">R</span>
+            <span class="tech-tag">ggplot2</span>
+            <span class="tech-tag">Statistical Inference</span>
+            <span class="tech-tag">Regression</span>
+          </div>
+          <div class="project-footer">
+            <a href="https://github.com/alkayyiss-ds/r-statistics-mini-projects" target="_blank" class="project-link" id="link-r">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+              View on GitHub
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="section contact-section">
+    <div class="container">
+      <div class="contact-wrapper">
+        <div class="contact-text">
+          <span class="section-tag">Get in Touch</span>
+          <h2 class="section-title">Let's Work Together</h2>
+          <p>Open to data science internships, freelance projects, research collaborations, and competition teaming. Feel free to reach out!</p>
+          <div class="contact-links">
+            <a href="mailto:naufalkayyiss@gmail.com" class="contact-item" id="contact-email">
+              <div class="contact-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </div>
+              <div>
+                <span class="contact-label">Email</span>
+                <span class="contact-value">naufalkayyiss@gmail.com</span>
+              </div>
+            </a>
+            <a href="https://github.com/alkayyiss-ds" target="_blank" class="contact-item" id="contact-github">
+              <div class="contact-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+              </div>
+              <div>
+                <span class="contact-label">GitHub</span>
+                <span class="contact-value">@alkayyiss-ds</span>
+              </div>
+            </a>
+            <div class="contact-item" id="contact-location">
+              <div class="contact-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div>
+                <span class="contact-label">Location</span>
+                <span class="contact-value">Surabaya, Indonesia</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="contact-card">
+          <div class="contact-card-inner">
+            <h3>Open to Opportunities</h3>
+            <ul class="opportunity-list">
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                Data Science Internship
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                ML Engineering Projects
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                Research Collaboration
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                Competition Teaming
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                Freelance Data Analysis
+              </li>
+            </ul>
+            <a href="mailto:naufalkayyiss@gmail.com" class="btn btn-primary btn-full" id="contact-email-btn">Send an Email</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <p class="footer-text">
+          Built with ❤️ by <strong>Muhammad Naufal Al Kayyis</strong>
+        </p>
+        <p class="footer-sub">© 2026 · All rights reserved · Hosted on GitHub Pages</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
