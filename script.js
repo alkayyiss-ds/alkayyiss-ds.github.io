@@ -1,14 +1,10 @@
 // ================================================
-// NAVBAR SCROLL EFFECT
+// NAVBAR — liquid glass on scroll (Mindloop style)
 // ================================================
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
-  if (window.scrollY > 50) {
-    navbar.classList.add('scrolled');
-  } else {
-    navbar.classList.remove('scrolled');
-  }
-});
+  navbar.classList.toggle('scrolled', window.scrollY > 40);
+}, { passive: true });
 
 // ================================================
 // TYPING ANIMATION
@@ -19,7 +15,7 @@ const phrases = [
   'Machine Learning Engineer',
   'Kaggle Competitor',
   'AI Enthusiast',
-  'Problem Solver'
+  'Problem Solver',
 ];
 
 let phraseIndex = 0;
@@ -29,19 +25,20 @@ let typingSpeed = 80;
 
 function typeEffect() {
   const currentPhrase = phrases[phraseIndex];
+  typingText.textContent = isDeleting
+    ? currentPhrase.substring(0, charIndex - 1)
+    : currentPhrase.substring(0, charIndex + 1);
 
   if (isDeleting) {
-    typingText.textContent = currentPhrase.substring(0, charIndex - 1);
     charIndex--;
     typingSpeed = 40;
   } else {
-    typingText.textContent = currentPhrase.substring(0, charIndex + 1);
     charIndex++;
     typingSpeed = 80;
   }
 
   if (!isDeleting && charIndex === currentPhrase.length) {
-    typingSpeed = 2000;
+    typingSpeed = 2200;
     isDeleting = true;
   } else if (isDeleting && charIndex === 0) {
     isDeleting = false;
@@ -55,26 +52,51 @@ function typeEffect() {
 typeEffect();
 
 // ================================================
-// SCROLL REVEAL ANIMATION
+// SCROLL-REVEAL — section elements (fade-up)
 // ================================================
-const revealElements = document.querySelectorAll(
-  '.project-card, .skill-category, .info-card, .contact-item, .section-header'
+const revealEls = document.querySelectorAll(
+  '.project-card, .skill-category, .info-card, .contact-item, .section-header, .contact-card'
 );
+revealEls.forEach(el => el.classList.add('reveal'));
 
-revealElements.forEach(el => el.classList.add('reveal'));
-
-const observer = new IntersectionObserver((entries) => {
+const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach((entry, i) => {
     if (entry.isIntersecting) {
-      setTimeout(() => {
-        entry.target.classList.add('visible');
-      }, i * 60);
-      observer.unobserve(entry.target);
+      setTimeout(() => entry.target.classList.add('visible'), i * 55);
+      revealObserver.unobserve(entry.target);
     }
   });
-}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
 
-revealElements.forEach(el => observer.observe(el));
+revealEls.forEach(el => revealObserver.observe(el));
+
+// ================================================
+// WORD-REVEAL ANIMATION — Mindloop scroll-driven
+// ================================================
+function initWordReveal() {
+  document.querySelectorAll('.word-reveal p').forEach(para => {
+    const words = para.innerText.trim().split(/\s+/);
+    para.innerHTML = words
+      .map(w => `<span class="reveal-word">${w}</span>`)
+      .join(' ');
+  });
+
+  const wordObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const words = entry.target.querySelectorAll('.reveal-word');
+        words.forEach((word, i) => {
+          setTimeout(() => word.classList.add('visible'), i * 40);
+        });
+        wordObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+
+  document.querySelectorAll('.word-reveal p').forEach(p => wordObserver.observe(p));
+}
+
+initWordReveal();
 
 // ================================================
 // PROJECT FILTER
@@ -88,12 +110,11 @@ filterBtns.forEach(btn => {
     btn.classList.add('active');
 
     const filter = btn.dataset.filter;
-
     projectCards.forEach(card => {
-      const categories = card.dataset.category || '';
-      if (filter === 'all' || categories.includes(filter)) {
+      const cats = card.dataset.category || '';
+      if (filter === 'all' || cats.includes(filter)) {
         card.classList.remove('hidden');
-        card.style.animation = 'fadeInUp 0.4s ease both';
+        card.style.animation = 'fadeUp 0.4s ease both';
       } else {
         card.classList.add('hidden');
       }
@@ -102,7 +123,7 @@ filterBtns.forEach(btn => {
 });
 
 // ================================================
-// SMOOTH ACTIVE NAV LINK
+// ACTIVE NAV LINK on scroll
 // ================================================
 const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('.nav-link');
@@ -111,60 +132,32 @@ const sectionObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       navLinks.forEach(link => {
-        link.style.color = '';
-        if (link.getAttribute('href') === '#' + entry.target.id) {
-          link.style.color = 'var(--text-primary)';
-        }
+        const isActive = link.getAttribute('href') === '#' + entry.target.id;
+        link.style.color = isActive ? 'var(--fg)' : '';
       });
     }
   });
-}, { threshold: 0.5 });
+}, { threshold: 0.4 });
 
-sections.forEach(section => sectionObserver.observe(section));
-
-// ================================================
-// CARD TILT EFFECT (subtle)
-// ================================================
-document.querySelectorAll('.project-card').forEach(card => {
-  card.addEventListener('mousemove', (e) => {
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-    const tiltX = (y - centerY) / centerY * 4;
-    const tiltY = (centerX - x) / centerX * 4;
-    card.style.transform = `translateY(-4px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
-    card.style.transition = 'none';
-  });
-
-  card.addEventListener('mouseleave', () => {
-    card.style.transform = '';
-    card.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
-  });
-});
+sections.forEach(s => sectionObserver.observe(s));
 
 // ================================================
-// COUNTER ANIMATION FOR STATS
+// STAT COUNTER ANIMATION
 // ================================================
 function animateCounter(el, target, suffix = '') {
   let current = 0;
-  const step = target / 40;
+  const step = target / 35;
   const timer = setInterval(() => {
-    current += step;
-    if (current >= target) {
-      current = target;
-      clearInterval(timer);
-    }
+    current = Math.min(current + step, target);
     el.textContent = Math.floor(current) + suffix;
+    if (current >= target) clearInterval(timer);
   }, 30);
 }
 
 const statsObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      const statNums = entry.target.querySelectorAll('.stat-num');
-      statNums.forEach(num => {
+      entry.target.querySelectorAll('.stat-num').forEach(num => {
         const text = num.textContent;
         const value = parseInt(text);
         const suffix = text.replace(String(value), '');
