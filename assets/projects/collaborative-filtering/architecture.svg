@@ -1,0 +1,5 @@
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="600" fill="#0d0d0d"/>
+  <text x="400" y="280" font-family="monospace" font-size="16" fill="#00d4aa" text-anchor="middle">Collaborative Filtering Architecture</text>
+  <text x="400" y="310" font-family="monospace" font-size="12" fill="#666" text-anchor="middle">Replace with actual architecture diagram</text>
+</svg>

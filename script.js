@@ -281,6 +281,63 @@ window.PROJECT_DATA = {
       trainingCurve: "/assets/projects/project-intelligence/training-curve.png",
       architecture: "/assets/projects/project-intelligence/architecture.svg"
     }
+  },
+  "collaborative-filtering": {
+    id: "collaborative-filtering",
+    title: "Collaborative Filtering Recommender",
+    category: ["ml", "nlp"],
+    badges: ["Recommender", "Matrix Factorization"],
+    icon: "orange",
+    description: "Movie recommendation system using collaborative filtering with matrix factorization (SVD/ALS). Implements user-based and item-based approaches with implicit feedback handling.",
+    techStack: ["Python", "Surprise", "Implicit", "Pandas", "Scikit-learn"],
+    githubUrl: "https://github.com/alkayyiss-ds/collaborative-filtering-recommender",
+    role: "Data Scientist / ML Engineer",
+    status: "Completed Project",
+    dataset: "MovieLens dataset (100k-20M ratings, user-item interactions)",
+    metrics: {
+      accuracy: "—",
+      f1Score: "—",
+      precision: "0.723",
+      recall: "0.687",
+      rocAuc: "—",
+      rmse: "0.892",
+      mae: "0.691",
+      coverage: "94.2%"
+    },
+    assets: {
+      confusionMatrix: "/assets/projects/collaborative-filtering/confusion-matrix.png",
+      rocCurve: "/assets/projects/collaborative-filtering/roc-curve.png",
+      featureImportance: "/assets/projects/collaborative-filtering/feature-importance.png",
+      trainingCurve: "/assets/projects/collaborative-filtering/training-curve.png",
+      architecture: "/assets/projects/collaborative-filtering/architecture.svg"
+    }
+  },
+  "ml-pipeline": {
+    id: "ml-pipeline",
+    title: "ML Pipeline Framework",
+    category: ["ml"],
+    badges: ["Framework", "MLOps"],
+    icon: "green",
+    description: "Modular end-to-end ML pipeline template with FastAPI backend, PyTorch/TensorFlow support, structured notebooks, Docker deployment, and pytest testing suite.",
+    techStack: ["FastAPI", "PyTorch", "TensorFlow", "Docker", "Pytest"],
+    githubUrl: "https://github.com/alkayyiss-ds/ml-pipeline-framework",
+    role: "ML Engineer / Platform Engineer",
+    status: "Boilerplate Framework",
+    dataset: "N/A — Framework template (includes dataset download scripts)",
+    metrics: {
+      accuracy: "N/A",
+      f1Score: "N/A",
+      precision: "N/A",
+      recall: "N/A",
+      rocAuc: "N/A"
+    },
+    assets: {
+      confusionMatrix: "/assets/projects/ml-pipeline/confusion-matrix.png",
+      rocCurve: "/assets/projects/ml-pipeline/roc-curve.png",
+      featureImportance: "/assets/projects/ml-pipeline/feature-importance.png",
+      trainingCurve: "/assets/projects/ml-pipeline/training-curve.png",
+      architecture: "/assets/projects/ml-pipeline/architecture.svg"
+    }
   }
 };
 
@@ -635,6 +692,9 @@ const ProjectModal = (() => {
       container.focus();
       focusableElements = getFocusableElements();
     });
+
+    // Ensure Overview tab is active
+    switchTab('overview');
 
     // Update URL
     history.pushState(null, '', `#project-${projectId}`);
