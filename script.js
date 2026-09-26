@@ -22,11 +22,11 @@ window.PROJECT_DATA = {
       rocAuc: "0.987"
     },
     assets: {
-      confusionMatrix: "/assets/projects/waste-classification/confusion-matrix.png",
-      rocCurve: "/assets/projects/waste-classification/roc-curve.png",
-      featureImportance: "/assets/projects/waste-classification/feature-importance.png",
-      trainingCurve: "/assets/projects/waste-classification/training-curve.png",
-      architecture: "/assets/projects/waste-classification/architecture.svg"
+      confusionMatrix: "assets/projects/waste-classification/confusion-matrix.svg",
+      rocCurve: "assets/projects/waste-classification/roc-curve.svg",
+      featureImportance: "assets/projects/waste-classification/feature-importance.svg",
+      trainingCurve: "assets/projects/waste-classification/training-curve.svg",
+      architecture: "assets/projects/waste-classification/architecture.svg"
     }
   },
   "traffic-forecasting": {
@@ -53,11 +53,11 @@ window.PROJECT_DATA = {
       r2: "—"
     },
     assets: {
-      confusionMatrix: "/assets/projects/traffic-forecasting/confusion-matrix.png",
-      rocCurve: "/assets/projects/traffic-forecasting/roc-curve.png",
-      featureImportance: "/assets/projects/traffic-forecasting/feature-importance.png",
-      trainingCurve: "/assets/projects/traffic-forecasting/training-curve.png",
-      architecture: "/assets/projects/traffic-forecasting/architecture.svg"
+      confusionMatrix: "assets/projects/traffic-forecasting/confusion-matrix.svg",
+      rocCurve: "assets/projects/traffic-forecasting/roc-curve.svg",
+      featureImportance: "assets/projects/traffic-forecasting/feature-importance.svg",
+      trainingCurve: "assets/projects/traffic-forecasting/training-curve.svg",
+      architecture: "assets/projects/traffic-forecasting/architecture.svg"
     }
   },
   "text-tampering": {
@@ -80,11 +80,11 @@ window.PROJECT_DATA = {
       rocAuc: "0.965"
     },
     assets: {
-      confusionMatrix: "/assets/projects/text-tampering/confusion-matrix.png",
-      rocCurve: "/assets/projects/text-tampering/roc-curve.png",
-      featureImportance: "/assets/projects/text-tampering/feature-importance.png",
-      trainingCurve: "/assets/projects/text-tampering/training-curve.png",
-      architecture: "/assets/projects/text-tampering/architecture.svg"
+      confusionMatrix: "assets/projects/text-tampering/confusion-matrix.svg",
+      rocCurve: "assets/projects/text-tampering/roc-curve.svg",
+      featureImportance: "assets/projects/text-tampering/feature-importance.svg",
+      trainingCurve: "assets/projects/text-tampering/training-curve.svg",
+      architecture: "assets/projects/text-tampering/architecture.svg"
     }
   },
   "wiki-prediction": {
@@ -109,11 +109,11 @@ window.PROJECT_DATA = {
       ndcg10: "0.754"
     },
     assets: {
-      confusionMatrix: "/assets/projects/wiki-prediction/confusion-matrix.png",
-      rocCurve: "/assets/projects/wiki-prediction/roc-curve.png",
-      featureImportance: "/assets/projects/wiki-prediction/feature-importance.png",
-      trainingCurve: "/assets/projects/wiki-prediction/training-curve.png",
-      architecture: "/assets/projects/wiki-prediction/architecture.svg"
+      confusionMatrix: "assets/projects/wiki-prediction/confusion-matrix.svg",
+      rocCurve: "assets/projects/wiki-prediction/roc-curve.svg",
+      featureImportance: "assets/projects/wiki-prediction/feature-importance.svg",
+      trainingCurve: "assets/projects/wiki-prediction/training-curve.svg",
+      architecture: "assets/projects/wiki-prediction/architecture.svg"
     }
   },
   "prd-tiktok": {
@@ -136,11 +136,11 @@ window.PROJECT_DATA = {
       rocAuc: "N/A"
     },
     assets: {
-      confusionMatrix: "/assets/projects/prd-tiktok/confusion-matrix.png",
-      rocCurve: "/assets/projects/prd-tiktok/roc-curve.png",
-      featureImportance: "/assets/projects/prd-tiktok/feature-importance.png",
-      trainingCurve: "/assets/projects/prd-tiktok/training-curve.png",
-      architecture: "/assets/projects/prd-tiktok/architecture.svg"
+      confusionMatrix: "assets/projects/prd-tiktok/confusion-matrix.svg",
+      rocCurve: "assets/projects/prd-tiktok/roc-curve.svg",
+      featureImportance: "assets/projects/prd-tiktok/feature-importance.svg",
+      trainingCurve: "assets/projects/prd-tiktok/training-curve.svg",
+      architecture: "assets/projects/prd-tiktok/architecture.svg"
     }
   },
   "r-statistics": {
@@ -163,11 +163,11 @@ window.PROJECT_DATA = {
       rocAuc: "N/A"
     },
     assets: {
-      confusionMatrix: "/assets/projects/r-statistics/confusion-matrix.png",
-      rocCurve: "/assets/projects/r-statistics/roc-curve.png",
-      featureImportance: "/assets/projects/r-statistics/feature-importance.png",
-      trainingCurve: "/assets/projects/r-statistics/training-curve.png",
-      architecture: "/assets/projects/r-statistics/architecture.svg"
+      confusionMatrix: "assets/projects/r-statistics/confusion-matrix.svg",
+      rocCurve: "assets/projects/r-statistics/roc-curve.svg",
+      featureImportance: "assets/projects/r-statistics/feature-importance.svg",
+      trainingCurve: "assets/projects/r-statistics/training-curve.svg",
+      architecture: "assets/projects/r-statistics/architecture.svg"
     }
   },
   "neo-horcrox": {
@@ -194,11 +194,11 @@ window.PROJECT_DATA = {
       r2: "0.974"
     },
     assets: {
-      confusionMatrix: "/assets/projects/neo-horcrox/confusion-matrix.png",
-      rocCurve: "/assets/projects/neo-horcrox/roc-curve.png",
-      featureImportance: "/assets/projects/neo-horcrox/feature-importance.png",
-      trainingCurve: "/assets/projects/neo-horcrox/training-curve.png",
-      architecture: "/assets/projects/neo-horcrox/architecture.svg"
+      confusionMatrix: "assets/projects/neo-horcrox/confusion-matrix.svg",
+      rocCurve: "assets/projects/neo-horcrox/roc-curve.svg",
+      featureImportance: "assets/projects/neo-horcrox/feature-importance.svg",
+      trainingCurve: "assets/projects/neo-horcrox/training-curve.svg",
+      architecture: "assets/projects/neo-horcrox/architecture.svg"
     }
   },
   "interview-training": {
@@ -221,11 +221,11 @@ window.PROJECT_DATA = {
       rocAuc: "—"
     },
     assets: {
-      confusionMatrix: "/assets/projects/interview-training/confusion-matrix.png",
-      rocCurve: "/assets/projects/interview-training/roc-curve.png",
-      featureImportance: "/assets/projects/interview-training/feature-importance.png",
-      trainingCurve: "/assets/projects/interview-training/training-curve.png",
-      architecture: "/assets/projects/interview-training/architecture.svg"
+      confusionMatrix: "assets/projects/interview-training/confusion-matrix.svg",
+      rocCurve: "assets/projects/interview-training/roc-curve.svg",
+      featureImportance: "assets/projects/interview-training/feature-importance.svg",
+      trainingCurve: "assets/projects/interview-training/training-curve.svg",
+      architecture: "assets/projects/interview-training/architecture.svg"
     }
   },
   "suaralens": {
@@ -248,11 +248,11 @@ window.PROJECT_DATA = {
       rocAuc: "Run evaluation to populate"
     },
     assets: {
-      confusionMatrix: "/assets/projects/suaralens/confusion-matrix.png",
-      rocCurve: "/assets/projects/suaralens/roc-curve.png",
-      featureImportance: "/assets/projects/suaralens/feature-importance.png",
-      trainingCurve: "/assets/projects/suaralens/training-curve.png",
-      architecture: "/assets/projects/suaralens/architecture.svg"
+      confusionMatrix: "assets/projects/suaralens/confusion-matrix.svg",
+      rocCurve: "assets/projects/suaralens/roc-curve.svg",
+      featureImportance: "assets/projects/suaralens/feature-importance.svg",
+      trainingCurve: "assets/projects/suaralens/training-curve.svg",
+      architecture: "assets/projects/suaralens/architecture.svg"
     }
   },
   "project-intelligence": {
@@ -275,11 +275,11 @@ window.PROJECT_DATA = {
       rocAuc: "N/A"
     },
     assets: {
-      confusionMatrix: "/assets/projects/project-intelligence/confusion-matrix.png",
-      rocCurve: "/assets/projects/project-intelligence/roc-curve.png",
-      featureImportance: "/assets/projects/project-intelligence/feature-importance.png",
-      trainingCurve: "/assets/projects/project-intelligence/training-curve.png",
-      architecture: "/assets/projects/project-intelligence/architecture.svg"
+      confusionMatrix: "assets/projects/project-intelligence/confusion-matrix.svg",
+      rocCurve: "assets/projects/project-intelligence/roc-curve.svg",
+      featureImportance: "assets/projects/project-intelligence/feature-importance.svg",
+      trainingCurve: "assets/projects/project-intelligence/training-curve.svg",
+      architecture: "assets/projects/project-intelligence/architecture.svg"
     }
   },
   "collaborative-filtering": {
@@ -305,11 +305,11 @@ window.PROJECT_DATA = {
       coverage: "94.2%"
     },
     assets: {
-      confusionMatrix: "/assets/projects/collaborative-filtering/confusion-matrix.png",
-      rocCurve: "/assets/projects/collaborative-filtering/roc-curve.png",
-      featureImportance: "/assets/projects/collaborative-filtering/feature-importance.png",
-      trainingCurve: "/assets/projects/collaborative-filtering/training-curve.png",
-      architecture: "/assets/projects/collaborative-filtering/architecture.svg"
+      confusionMatrix: "assets/projects/collaborative-filtering/confusion-matrix.svg",
+      rocCurve: "assets/projects/collaborative-filtering/roc-curve.svg",
+      featureImportance: "assets/projects/collaborative-filtering/feature-importance.svg",
+      trainingCurve: "assets/projects/collaborative-filtering/training-curve.svg",
+      architecture: "assets/projects/collaborative-filtering/architecture.svg"
     }
   },
   "ml-pipeline": {
@@ -332,11 +332,11 @@ window.PROJECT_DATA = {
       rocAuc: "N/A"
     },
     assets: {
-      confusionMatrix: "/assets/projects/ml-pipeline/confusion-matrix.png",
-      rocCurve: "/assets/projects/ml-pipeline/roc-curve.png",
-      featureImportance: "/assets/projects/ml-pipeline/feature-importance.png",
-      trainingCurve: "/assets/projects/ml-pipeline/training-curve.png",
-      architecture: "/assets/projects/ml-pipeline/architecture.svg"
+      confusionMatrix: "assets/projects/ml-pipeline/confusion-matrix.svg",
+      rocCurve: "assets/projects/ml-pipeline/roc-curve.svg",
+      featureImportance: "assets/projects/ml-pipeline/feature-importance.svg",
+      trainingCurve: "assets/projects/ml-pipeline/training-curve.svg",
+      architecture: "assets/projects/ml-pipeline/architecture.svg"
     }
   }
 };
@@ -962,6 +962,11 @@ const ContactForm = (() => {
 // BOOT
 // ============================================================
 document.addEventListener('DOMContentLoaded', () => {
+  // 1. Render dynamic DOM content FIRST
+  ProjectRenderer.init();
+  SkillRenderer.init();
+
+  // 2. Initialize interactive UI components that depend on DOM
   Navbar.init();
   TypingAnimation.init();
   ScrollReveal.init();
@@ -969,8 +974,6 @@ document.addEventListener('DOMContentLoaded', () => {
   ProjectFilter.init();
   ActiveNavLink.init();
   StatCounter.init();
-  ProjectRenderer.init();
-  SkillRenderer.init();
   ProjectModal.init();
   ContactForm.init();
 });
