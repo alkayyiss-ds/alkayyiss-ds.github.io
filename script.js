@@ -1,6 +1,6 @@
-// ================================================
+// ============================================================
 // PROJECT DATA REGISTRY
-// ================================================
+// ============================================================
 window.PROJECT_DATA = {
   "waste-classification": {
     id: "waste-classification",
@@ -341,11 +341,159 @@ window.PROJECT_DATA = {
   }
 };
 
-// ================================================
-// NAVBAR — liquid glass on scroll (Mindloop style)
-// ================================================
+// Skill categories
+window.SKILL_DATA = [
+  {
+    title: "Machine Learning",
+    count: 8,
+    tags: ["PyTorch", "TensorFlow", "Scikit-learn", "XGBoost", "LightGBM", "Optuna", "MLflow", "Hugging Face"]
+  },
+  {
+    title: "Computer Vision",
+    count: 5,
+    tags: ["OpenCV", "EfficientNet", "Swin Transformer", "DINOv2", "YOLO", "Segmentation", "Detection"]
+  },
+  {
+    title: "Natural Language Processing",
+    count: 6,
+    tags: ["Transformers", "BERT/IndoBERT", "LLMs", "RAG", "Tokenizers", "spaCy", "Sentence Transformers"]
+  },
+  {
+    title: "MLOps & Engineering",
+    count: 7,
+    tags: ["FastAPI", "Docker", "Kubernetes", "PostgreSQL", "MongoDB", "Redis", "GitHub Actions", "DVC"]
+  },
+  {
+    title: "Data & Analytics",
+    count: 6,
+    tags: ["Pandas", "Polars", "SQL", "Time Series", "Statistical Inference", "A/B Testing", "Causal Inference"]
+  },
+  {
+    title: "Product & Tools",
+    count: 5,
+    tags: ["Product Strategy", "System Design", "Next.js", "React", "Figma", "Notion", "Jira"]
+  }
+];
+
+// ============================================================
+// UTILITIES
+// ============================================================
+const $ = (sel, ctx = document) => ctx.querySelector(sel);
+const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
+
+function createElement(html) {
+  const template = document.createElement('template');
+  template.innerHTML = html.trim();
+  return template.content.firstElementChild;
+}
+
+function formatCategory(cat) {
+  const map = { ml: 'ML', cv: 'CV', nlp: 'NLP', pm: 'Product', stats: 'Stats' };
+  return cat.map(c => map[c] || c.toUpperCase()).join(' / ');
+}
+
+function getBadgeClass(category) {
+  const map = { ml: 'badge--ml', cv: 'badge--cv', nlp: 'badge--nlp', pm: 'badge--pm', stats: 'badge--stats' };
+  return map[category] || 'badge--ml';
+}
+
+// ============================================================
+// PROJECT RENDERER
+// ============================================================
+const ProjectRenderer = (() => {
+  const grid = $('#projects-grid');
+
+  function getPlaceholderSvg(title, color) {
+    return `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 250'%3E%3Crect fill='%23F5F5F5' width='400' height='250'/%3E%3Crect fill='${encodeURIComponent(color)}' width='400' height='4'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='system-ui' font-size='16' fill='%23A3A3A3'%3E${encodeURIComponent(title)}%3C/text%3E%3C/svg%3E`;
+  }
+
+  function getIconColor(icon) {
+    const colors = {
+      green: '%2322C55E',
+      blue: '%233B82F6',
+      purple: '%23A855F7',
+      orange: '%23F97316',
+      pink: '%23EC4899',
+      teal: '%2314B8A6'
+    };
+    return colors[icon] || '%2300B4D8';
+  }
+
+  function renderCard(project) {
+    const cats = project.category.join(' ');
+    const badgeHtml = project.badges.map(b => `<span class="badge ${getBadgeClass(project.category[0])}">${b}</span>`).join('');
+    const techHtml = project.techStack.slice(0, 4).map(t => `<span class="skill-tag">${t}</span>`).join('');
+    const placeholderSrc = getPlaceholderSvg(project.title, getIconColor(project.icon));
+
+    return `
+      <article class="project-card card card--interactive reveal" data-category="${cats}" data-project-id="${project.id}" role="listitem" tabindex="0" aria-label="${project.title}">
+        <div class="project-card__media">
+          <img src="${placeholderSrc}" alt="${project.title} preview" loading="lazy" width="400" height="250">
+          <div class="project-card__badges">${badgeHtml}</div>
+        </div>
+        <div class="project-card__content">
+          <span class="project-card__category">${formatCategory(project.category)}</span>
+          <h3 class="project-card__title">${project.title}</h3>
+          <p class="project-card__desc">${project.description}</p>
+          <div class="project-card__footer">
+            <div class="project-card__tech">${techHtml}${project.techStack.length > 4 ? `<span class="skill-tag">+${project.techStack.length - 4} more</span>` : ''}</div>
+            <a href="${project.githubUrl}" target="_blank" rel="noopener" class="project-card__link project-link" aria-label="View ${project.title} on GitHub">
+              <span>Code</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+        </div>
+      </article>
+    `;
+  }
+
+  function init() {
+    if (!grid) return;
+    const projects = Object.values(window.PROJECT_DATA);
+    grid.innerHTML = projects.map(renderCard).join('');
+
+    // Add stagger delays
+    $$('.project-card', grid).forEach((card, i) => {
+      card.style.transitionDelay = `${i * 60}ms`;
+      card.classList.add(`reveal-delay-${Math.min(i + 1, 6)}`);
+    });
+  }
+
+  return { init };
+})();
+
+// ============================================================
+// SKILL RENDERER
+// ============================================================
+const SkillRenderer = (() => {
+  const grid = $('#skills-grid');
+
+  function renderCategory(skill, index) {
+    const tagsHtml = skill.tags.map(t => `<span class="skill-tag">${t}</span>`).join('');
+    return `
+      <article class="skill-category card reveal reveal-delay-${Math.min(index + 1, 6)}" role="listitem" style="transition-delay: ${index * 60}ms">
+        <header class="skill-category__header">
+          <h3 class="skill-category__title">${skill.title}</h3>
+          <span class="skill-category__count">${skill.count} technologies</span>
+        </header>
+        <div class="skill-category__tags">${tagsHtml}</div>
+      </article>
+    `;
+  }
+
+  function init() {
+    if (!grid) return;
+    grid.innerHTML = window.SKILL_DATA.map(renderCategory).join('');
+  }
+
+  return { init };
+})();
+
+// ============================================================
+// NAVBAR — liquid glass on scroll
+// ============================================================
 const Navbar = (() => {
-  const navbar = document.getElementById('navbar');
+  const navbar = $('#navbar');
   function init() {
     window.addEventListener('scroll', () => {
       navbar.classList.toggle('scrolled', window.scrollY > 40);
@@ -354,11 +502,11 @@ const Navbar = (() => {
   return { init };
 })();
 
-// ================================================
+// ============================================================
 // TYPING ANIMATION
-// ================================================
+// ============================================================
 const TypingAnimation = (() => {
-  const typingText = document.getElementById('typing-text');
+  const typingText = $('#typing-text');
   const phrases = [
     'Data Science Student',
     'Machine Learning Engineer',
@@ -370,11 +518,14 @@ const TypingAnimation = (() => {
   let charIndex = 0;
   let isDeleting = false;
   let typingSpeed = 80;
+
   function typeEffect() {
+    if (!typingText) return;
     const currentPhrase = phrases[phraseIndex];
     typingText.textContent = isDeleting
       ? currentPhrase.substring(0, charIndex - 1)
       : currentPhrase.substring(0, charIndex + 1);
+
     if (isDeleting) {
       charIndex--;
       typingSpeed = 40;
@@ -382,6 +533,7 @@ const TypingAnimation = (() => {
       charIndex++;
       typingSpeed = 80;
     }
+
     if (!isDeleting && charIndex === currentPhrase.length) {
       typingSpeed = 2200;
       isDeleting = true;
@@ -392,20 +544,19 @@ const TypingAnimation = (() => {
     }
     setTimeout(typeEffect, typingSpeed);
   }
+
   function init() {
-    typeEffect();
+    if (typingText) typeEffect();
   }
   return { init };
 })();
 
-// ================================================
-// SCROLL-REVEAL — section elements (fade-up)
-// ================================================
+// ============================================================
+// SCROLL-REVEAL
+// ============================================================
 const ScrollReveal = (() => {
   function init() {
-    const revealEls = document.querySelectorAll(
-      '.project-card, .skill-category, .info-card, .contact-item, .section-header, .contact-card'
-    );
+    const revealEls = $$('.reveal');
     revealEls.forEach(el => el.classList.add('reveal'));
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry, i) => {
@@ -420,12 +571,12 @@ const ScrollReveal = (() => {
   return { init };
 })();
 
-// ================================================
-// WORD-REVEAL ANIMATION — Mindloop scroll-driven
-// ================================================
+// ============================================================
+// WORD-REVEAL ANIMATION
+// ============================================================
 const WordReveal = (() => {
   function init() {
-    document.querySelectorAll('.word-reveal p').forEach(para => {
+    $$('.word-reveal p').forEach(para => {
       const words = para.innerText.trim().split(/\s+/);
       para.innerHTML = words
         .map(w => `<span class="reveal-word">${w}</span>`)
@@ -442,28 +593,35 @@ const WordReveal = (() => {
         }
       });
     }, { threshold: 0.2 });
-    document.querySelectorAll('.word-reveal p').forEach(p => wordObserver.observe(p));
+    $$('.word-reveal p').forEach(p => wordObserver.observe(p));
   }
   return { init };
 })();
 
-// ================================================
+// ============================================================
 // PROJECT FILTER
-// ================================================
+// ============================================================
 const ProjectFilter = (() => {
   function init() {
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const projectCards = document.querySelectorAll('.project-card');
+    const filterBtns = $$('.filter-btn');
+    const projectCards = $$('.project-card');
+
     filterBtns.forEach(btn => {
       btn.addEventListener('click', () => {
-        filterBtns.forEach(b => b.classList.remove('active'));
+        filterBtns.forEach(b => {
+          b.classList.remove('active');
+          b.setAttribute('aria-pressed', 'false');
+        });
         btn.classList.add('active');
+        btn.setAttribute('aria-pressed', 'true');
+
         const filter = btn.dataset.filter;
-        projectCards.forEach(card => {
+        projectCards.forEach((card, i) => {
           const cats = card.dataset.category || '';
           if (filter === 'all' || cats.includes(filter)) {
             card.classList.remove('hidden');
             card.style.animation = 'fadeUp 0.4s ease both';
+            card.style.transitionDelay = `${i * 30}ms`;
           } else {
             card.classList.add('hidden');
           }
@@ -474,19 +632,19 @@ const ProjectFilter = (() => {
   return { init };
 })();
 
-// ================================================
+// ============================================================
 // ACTIVE NAV LINK on scroll
-// ================================================
+// ============================================================
 const ActiveNavLink = (() => {
   function init() {
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = $$('section[id]');
+    const navLinks = $$('.nav__link');
     const sectionObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           navLinks.forEach(link => {
             const isActive = link.getAttribute('href') === '#' + entry.target.id;
-            link.style.color = isActive ? 'var(--fg)' : '';
+            link.classList.toggle('active', isActive);
           });
         }
       });
@@ -496,9 +654,9 @@ const ActiveNavLink = (() => {
   return { init };
 })();
 
-// ================================================
+// ============================================================
 // STAT COUNTER ANIMATION
-// ================================================
+// ============================================================
 const StatCounter = (() => {
   function animateCounter(el, target, suffix = '') {
     let current = 0;
@@ -509,6 +667,7 @@ const StatCounter = (() => {
       if (current >= target) clearInterval(timer);
     }, 30);
   }
+
   function init() {
     const statsObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -523,38 +682,38 @@ const StatCounter = (() => {
         }
       });
     }, { threshold: 0.5 });
-    const heroStats = document.querySelector('.hero-stats');
+    const heroStats = $('.hero__stats');
     if (heroStats) statsObserver.observe(heroStats);
   }
   return { init };
 })();
 
-// ================================================
+// ============================================================
 // PROJECT MODAL
-// ================================================
+// ============================================================
 const ProjectModal = (() => {
   let currentProject = null;
   let focusBeforeOpen = null;
   let focusableElements = [];
 
-  const modal = document.getElementById('project-modal');
-  const backdrop = modal.querySelector('.modal-backdrop');
-  const container = modal.querySelector('.modal-container');
-  const closeBtn = modal.querySelector('.modal-close');
-  const tabs = modal.querySelectorAll('.modal-tab');
-  const panels = modal.querySelectorAll('.modal-panel');
-  const githubLink = modal.querySelector('.modal-github');
+  const modal = $('#project-modal');
+  const backdrop = $('#modal-backdrop');
+  const container = $('.modal', modal);
+  const closeBtn = $('#modal-close');
+  const tabs = $$('.modal__tab', modal);
+  const panels = $$('.modal__panel', modal);
+  const githubLink = $('#modal-github');
 
   // DOM refs for content
-  const modalBadges = modal.querySelector('#modal-badges');
-  const modalTitle = modal.querySelector('#modal-title');
-  const modalDescription = modal.querySelector('#modal-description');
-  const modalDataset = modal.querySelector('#modal-dataset');
-  const modalMeta = modal.querySelector('#modal-meta');
-  const modalTechStack = modal.querySelector('#modal-tech-stack');
-  const modalMetricsTable = modal.querySelector('#modal-metrics-table tbody');
-  const modalResultsGrid = modal.querySelector('#modal-results-grid');
-  const modalArchitectureImg = modal.querySelector('#modal-architecture-img');
+  const modalBadges = $('#modal-badges');
+  const modalTitle = $('#modal-title');
+  const modalDescription = $('#modal-description');
+  const modalDataset = $('#modal-dataset');
+  const modalMeta = $('#modal-meta');
+  const modalTechStack = $('#modal-tech-stack');
+  const modalMetricsTable = $('#modal-metrics-table tbody');
+  const modalResultsGrid = $('#modal-results-grid');
+  const modalArchitectureImg = $('#modal-architecture-img');
 
   function getFocusableElements() {
     return container.querySelectorAll(
@@ -598,7 +757,7 @@ const ProjectModal = (() => {
   }
 
   function renderBadges(badges) {
-    modalBadges.innerHTML = badges.map(b => 
+    modalBadges.innerHTML = badges.map(b =>
       `<span class="badge badge--ml">${b}</span>`
     ).join(' ');
   }
@@ -617,7 +776,7 @@ const ProjectModal = (() => {
   }
 
   function renderTechStack(techStack) {
-    modalTechStack.innerHTML = techStack.map(t => 
+    modalTechStack.innerHTML = techStack.map(t =>
       `<span class="skill-tag skill-tag--secondary">${t}</span>`
     ).join(' ');
   }
@@ -673,7 +832,7 @@ const ProjectModal = (() => {
 
     // Populate content
     renderBadges(project.badges);
-    modalTitle.innerHTML = `${project.title} <em class="serif">${project.category.map(c => c.toUpperCase()).join(' / ')}</em>`;
+    modalTitle.innerHTML = `${project.title} <em class="serif">${formatCategory(project.category)}</em>`;
     modalDescription.textContent = project.description;
     modalDataset.textContent = project.dataset;
     renderMeta(project);
@@ -686,8 +845,10 @@ const ProjectModal = (() => {
 
     // Show modal
     modal.hidden = false;
+    backdrop.hidden = false;
     requestAnimationFrame(() => {
       modal.setAttribute('open', '');
+      backdrop.classList.add('visible');
       document.body.style.overflow = 'hidden';
       container.focus();
       focusableElements = getFocusableElements();
@@ -703,10 +864,12 @@ const ProjectModal = (() => {
   function close() {
     if (!modal.hasAttribute('open')) return;
     modal.removeAttribute('open');
+    backdrop.classList.remove('visible');
     document.body.style.overflow = '';
     // Wait for transition
     setTimeout(() => {
       modal.hidden = true;
+      backdrop.hidden = true;
       focusBeforeOpen?.focus();
     }, 250);
     history.replaceState(null, '', window.location.pathname);
@@ -720,12 +883,23 @@ const ProjectModal = (() => {
     window.addEventListener('hashchange', handleHashChange);
 
     // Delegate click on project cards
-    const grid = document.getElementById('projects-grid');
+    const grid = $('#projects-grid');
     grid.addEventListener('click', e => {
       const card = e.target.closest('.project-card');
       const githubLink = e.target.closest('.project-link');
       if (githubLink) return; // let default navigation happen
       if (card) open(card.dataset.projectId);
+    });
+
+    // Keyboard activation for project cards
+    grid.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        const card = e.target.closest('.project-card');
+        if (card) {
+          e.preventDefault();
+          open(card.dataset.projectId);
+        }
+      }
     });
 
     // Initial hash check
@@ -737,9 +911,56 @@ const ProjectModal = (() => {
   return { init, open, close };
 })();
 
-// ================================================
+// ============================================================
+// CONTACT FORM
+// ============================================================
+const ContactForm = (() => {
+  const form = $('#contact-form');
+  function init() {
+    if (!form) return;
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const originalText = submitBtn.textContent;
+      submitBtn.textContent = 'Sending...';
+      submitBtn.disabled = true;
+
+      try {
+        const formData = new FormData(form);
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: formData,
+          headers: { 'Accept': 'application/json' }
+        });
+        if (response.ok) {
+          submitBtn.textContent = 'Sent!';
+          submitBtn.classList.add('btn--secondary');
+          submitBtn.classList.remove('btn--primary');
+          form.reset();
+          setTimeout(() => {
+            submitBtn.textContent = originalText;
+            submitBtn.classList.remove('btn--secondary');
+            submitBtn.classList.add('btn--primary');
+            submitBtn.disabled = false;
+          }, 3000);
+        } else {
+          throw new Error('Form submission failed');
+        }
+      } catch (err) {
+        submitBtn.textContent = 'Failed — try again';
+        setTimeout(() => {
+          submitBtn.textContent = originalText;
+          submitBtn.disabled = false;
+        }, 3000);
+      }
+    });
+  }
+  return { init };
+})();
+
+// ============================================================
 // BOOT
-// ================================================
+// ============================================================
 document.addEventListener('DOMContentLoaded', () => {
   Navbar.init();
   TypingAnimation.init();
@@ -748,5 +969,8 @@ document.addEventListener('DOMContentLoaded', () => {
   ProjectFilter.init();
   ActiveNavLink.init();
   StatCounter.init();
+  ProjectRenderer.init();
+  SkillRenderer.init();
   ProjectModal.init();
+  ContactForm.init();
 });

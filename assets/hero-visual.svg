@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <rect fill="#FAFAFA" width="400" height="400"/>
+  <!-- Grid lines -->
+  <g stroke="#E5E5E5" stroke-width="1">
+    <line x1="40" y1="40" x2="360" y2="40"/>
+    <line x1="40" y1="120" x2="360" y2="120"/>
+    <line x1="40" y1="200" x2="360" y2="200"/>
+    <line x1="40" y1="280" x2="360" y2="280"/>
+    <line x1="40" y1="360" x2="360" y2="360"/>
+    <line x1="40" y1="40" x2="40" y2="360"/>
+    <line x1="120" y1="40" x2="120" y2="360"/>
+    <line x1="200" y1="40" x2="200" y2="360"/>
+    <line x1="280" y1="40" x2="280" y2="360"/>
+    <line x1="360" y1="40" x2="360" y2="360"/>
+  </g>
+  <!-- Accent bars -->
+  <g fill="#00B4D8">
+    <rect x="50" y="140" width="60" height="180" rx="4" opacity="0.3"/>
+    <rect x="130" y="80" width="60" height="240" rx="4" opacity="0.5"/>
+    <rect x="210" y="160" width="60" height="160" rx="4" opacity="0.4"/>
+    <rect x="290" y="60" width="60" height="260" rx="4" opacity="0.6"/>
+  </g>
+  <!-- Dots -->
+  <g fill="#00B4D8">
+    <circle cx="50" cy="140" r="6"/>
+    <circle cx="130" cy="80" r="6"/>
+    <circle cx="210" cy="160" r="6"/>
+    <circle cx="290" cy="60" r="6"/>
+  </g>
+  <!-- Label -->
+  <text x="200" y="390" text-anchor="middle" font-family="system-ui" font-size="12" fill="#A3A3A3">Metrics Dashboard Preview</text>
+</svg>
