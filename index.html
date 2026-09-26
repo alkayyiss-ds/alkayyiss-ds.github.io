@@ -265,8 +265,42 @@
     </section>
   </main>
 
-  <!-- Footer -->
-  <footer class="footer" role="contentinfo">
+  <!-- Project Detail Section (replaces modal) -->
+  <section id="project-detail" class="project-detail hidden" aria-labelledby="detail-title">
+    <button class="detail-close" aria-label="Close detail view">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    </button>
+    <div class="detail__content">
+      <div class="detail__header">
+        <div class="detail__badges" id="detail-badges" aria-label="Project tags"></div>
+        <h2 class="detail__title" id="detail-title"></h2>
+      </div>
+      <section class="detail__section" id="detail-overview">
+        <h3 class="detail__section-title">Description</h3>
+        <p class="detail__description" id="detail-description"></p>
+        <h3 class="detail__section-title">Dataset</h3>
+        <p class="detail__dataset" id="detail-dataset"></p>
+      </section>
+      <section class="detail__section" id="detail-metrics">
+        <h3 class="detail__section-title">Metrics</h3>
+        <table class="detail__metrics-table" id="detail-metrics-table"></table>
+      </section>
+      <section class="detail__section" id="detail-tech">
+        <h3 class="detail__section-title">Tech Stack</h3>
+        <ul class="detail__tech" id="detail-tech"></ul>
+      </section>
+      <section class="detail__section" id="detail-results">
+        <h3 class="detail__section-title">Visualizations</h3>
+        <div class="detail__results-grid" id="detail-results-grid"></div>
+      </section>
+      <section class="detail__section" id="detail-architecture">
+        <h3 class="detail__section-title">System Architecture</h3>
+        <img class="detail__architecture-img" id="detail-architecture-img" alt="Architecture diagram" loading="lazy" />
+      </section>
+      <a id="detail-github" class="btn btn--primary" target="_blank" rel="noopener">View on GitHub</a>
+    </div>
+  </section>
+
     <div class="footer__inner">
       <p class="footer__brand">Muhammad Naufal Al Kayyis</p>
       <p class="footer__copyright">&copy; 2025 Muhammad Naufal Al Kayyis. Built with care.</p>
@@ -282,74 +316,8 @@
         </a>
       </div>
     </div>
-  </footer>
+      </footer>
 
-  <!-- Project Modal -->
-  <div class="modal-backdrop" id="modal-backdrop" aria-hidden="true"></div>
-  <div class="modal" id="project-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
-    <div class="modal__header">
-      <div class="modal__title-group">
-        <div class="modal__badges" id="modal-badges" aria-label="Project tags"></div>
-        <h2 class="modal__title" id="modal-title"></h2>
-      </div>
-      <button class="modal__close" id="modal-close" aria-label="Close modal">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-      </button>
-    </div>
-    <div class="modal__body">
-      <div class="modal__tabs" role="tablist" aria-label="Project details">
-        <button class="modal__tab" role="tab" aria-selected="true" aria-controls="tab-overview" id="tab-btn-overview" data-tab="overview">Overview</button>
-        <button class="modal__tab" role="tab" aria-selected="false" aria-controls="tab-results" id="tab-btn-results" data-tab="results" tabindex="-1">Results</button>
-        <button class="modal__tab" role="tab" aria-selected="false" aria-controls="tab-architecture" id="tab-btn-architecture" data-tab="architecture" tabindex="-1">Architecture</button>
-      </div>
-
-      <section class="modal__panel" id="tab-overview" role="tabpanel" aria-labelledby="tab-btn-overview" hidden>
-        <div class="modal__section">
-          <h3 class="modal__section-title">Description</h3>
-          <p class="modal__description" id="modal-description"></p>
-        </div>
-        <div class="modal__section">
-          <h3 class="modal__section-title">Dataset</h3>
-          <p class="modal__dataset" id="modal-dataset"></p>
-        </div>
-        <div class="modal__section">
-          <h3 class="modal__section-title">Meta</h3>
-          <div class="modal__meta" id="modal-meta"></div>
-        </div>
-        <div class="modal__section">
-          <h3 class="modal__section-title">Tech Stack</h3>
-          <div class="modal__tech" id="modal-tech-stack"></div>
-        </div>
-      </section>
-
-      <section class="modal__panel" id="tab-results" role="tabpanel" aria-labelledby="tab-btn-results" hidden>
-        <div class="modal__section">
-          <h3 class="modal__section-title">Metrics</h3>
-          <table class="modal__metrics-table" id="modal-metrics-table">
-            <thead><tr><th>Metric</th><th>Value</th></tr></thead>
-            <tbody></tbody>
-          </table>
-        </div>
-        <div class="modal__section">
-          <h3 class="modal__section-title">Visualizations</h3>
-          <div class="modal__results-grid" id="modal-results-grid"></div>
-        </div>
-      </section>
-
-      <section class="modal__panel" id="tab-architecture" role="tabpanel" aria-labelledby="tab-btn-architecture" hidden>
-        <div class="modal__section">
-          <h3 class="modal__section-title">System Architecture</h3>
-          <div class="modal__architecture">
-            <img class="modal__architecture-img" id="modal-architecture-img" alt="" loading="lazy">
-          </div>
-        </div>
-      </section>
-    </div>
-    <div class="modal__footer">
-      <a class="btn btn--secondary modal__github" id="modal-github" href="#" target="_blank" rel="noopener">View on GitHub</a>
-    </div>
-  </div>
-
-  <script src="script.js?v=2.5"></script>
-</body>
-</html>
+      <script src="script.js?v=2.6"></script>
+    </body>
+    </html>

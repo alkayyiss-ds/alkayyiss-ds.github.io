@@ -688,249 +688,113 @@ const StatCounter = (() => {
 })();
 
 // ============================================================
-// PROJECT MODAL
+// PROJECT DETAIL
 // ============================================================
-const ProjectModal = (() => {
-  let currentProject = null;
-  let focusBeforeOpen = null;
-  let focusableElements = [];
+const ProjectDetail = (() => {
+  let focusBefore = null;
 
-  // Lazy DOM refs - initialized in init()
-  let modal = null;
-  let backdrop = null;
-  let container = null;
-  let closeBtn = null;
-  let tabs = null;
-  let panels = null;
-  let githubLink = null;
-  let modalBadges = null;
-  let modalTitle = null;
-  let modalDescription = null;
-  let modalDataset = null;
-  let modalMeta = null;
-  let modalTechStack = null;
-  let modalMetricsTable = null;
-  let modalResultsGrid = null;
-  let modalArchitectureImg = null;
+  // DOM refs
+  const detail = $('#project-detail');
+  const closeBtn = $('.detail-close');
+  const titleEl = $('#detail-title');
+  const badgesEl = $('#detail-badges');
+  const descriptionEl = $('#detail-description');
+  const datasetEl = $('#detail-dataset');
+  const metaEl = $('#detail-meta');
+  const techEl = $('#detail-tech');
+  const metricsTable = $('#detail-metrics-table');
+  const resultsGrid = $('#detail-results-grid');
+  const archImg = $('#detail-architecture-img');
+  const githubLink = $('#detail-github');
 
-  function cacheDOM() {
-    modal = $('#project-modal');
-    backdrop = $('#modal-backdrop');
-    container = $('.modal', modal);
-    closeBtn = $('#modal-close');
-    tabs = $$('.modal__tab', modal);
-    panels = $$('.modal__panel', modal);
-    githubLink = $('#modal-github');
-    modalBadges = $('#modal-badges');
-    modalTitle = $('#modal-title');
-    modalDescription = $('#modal-description');
-    modalDataset = $('#modal-dataset');
-    modalMeta = $('#modal-meta');
-    modalTechStack = $('#modal-tech-stack');
-    modalMetricsTable = $('#modal-metrics-table tbody');
-    modalResultsGrid = $('#modal-results-grid');
-    modalArchitectureImg = $('#modal-architecture-img');
-  }
-
-  function getFocusableElements() {
-    return container.querySelectorAll(
-      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-    );
-  }
-
-  function trapFocus(e) {
-    if (e.key !== 'Tab') return;
-    focusableElements = getFocusableElements();
-    const first = focusableElements[0];
-    const last = focusableElements[focusableElements.length - 1];
-    if (e.shiftKey && document.activeElement === first) {
-      e.preventDefault();
-      last.focus();
-    } else if (!e.shiftKey && document.activeElement === last) {
-      e.preventDefault();
-      first.focus();
-    }
-  }
-
-  function handleKeydown(e) {
-    if (!modal.hasAttribute('open')) return;
-    if (e.key === 'Escape') {
-      close();
-    } else if (e.key === 'Tab') {
-      trapFocus(e);
-    }
-  }
-
-  function handleHashChange() {
-    const hash = window.location.hash;
-    if (hash.startsWith('#project-')) {
-      const id = hash.slice(9); // remove '#project-'
-      if (window.PROJECT_DATA[id]) {
-        open(id);
-      }
-    } else if (modal.hasAttribute('open')) {
-      close();
-    }
-  }
-
-  function renderBadges(badges) {
-    modalBadges.innerHTML = badges.map(b =>
-      `<span class="badge badge--ml">${b}</span>`
-    ).join(' ');
-  }
-
-  function renderMeta(project) {
-    modalMeta.innerHTML = `
-      <div class="meta-item">
-        <span class="meta-label">Role</span>
-        <span class="meta-value">${project.role}</span>
-      </div>
-      <div class="meta-item">
-        <span class="meta-label">Status</span>
-        <span class="meta-value">${project.status}</span>
-      </div>
+  function render(project) {
+    titleEl.innerHTML = `${project.title} <em class="serif">${formatCategory(project.category)}</em>`;
+    badgesEl.innerHTML = project.badges.map(b => `<span class="badge badge--ml">${b}</span>`).join(' ');
+    descriptionEl.textContent = project.description;
+    datasetEl.textContent = project.dataset;
+    metaEl.innerHTML = `
+      <div class="meta-item"><span class="meta-label">Role</span><span class="meta-value">${project.role}</span></div>
+      <div class="meta-item"><span class="meta-label">Status</span><span class="meta-value">${project.status}</span></div>
     `;
-  }
-
-  function renderTechStack(techStack) {
-    modalTechStack.innerHTML = techStack.map(t =>
-      `<span class="skill-tag skill-tag--secondary">${t}</span>`
-    ).join(' ');
-  }
-
-  function renderMetrics(metrics) {
-    const rows = Object.entries(metrics)
-      .filter(([_, v]) => v !== 'N/A' && v !== '—')
-      .map(([key, value]) => {
-        const label = key
-          .replace(/([A-Z])/g, ' $1')
-          .replace(/^./, c => c.toUpperCase())
-          .replace('Roc Auc', 'ROC-AUC')
-          .replace('Mrr', 'MRR')
-          .replace('Ndcg10', 'NDCG@10');
-        return `<tr><td>${label}</td><td>${value}</td></tr>`;
+    techEl.innerHTML = project.techStack.map(t => `<span class="skill-tag skill-tag--secondary">${t}</span>`).join(' ');
+    const rows = Object.entries(project.metrics||{})
+      .filter(([k,v]) => v !== 'N/A' && v !== '—')
+      .map(([k,v]) => {
+        const label = k.replace(/([A-Z])/g,' $1').replace(/^./,c=>c.toUpperCase())
+          .replace('Roc Auc','ROC-AUC').replace('Mrr','MRR').replace('Ndcg10','NDCG@10');
+        return `<tr><td>${label}</td><td>${v}</td></tr>`;
       }).join('');
-    modalMetricsTable.innerHTML = rows || '<tr><td colspan="2" style="color:var(--fg-subtle);text-align:center;">No metrics available for this project type</td></tr>';
-  }
-
-  function renderResultsGrid(assets) {
+    metricsTable.innerHTML = rows || `<tr><td colspan="2" style="text-align:center;color:var(--color-fg-subtle);">No metrics</td></tr>`;
     const items = [
-      { key: 'confusionMatrix', label: 'Confusion Matrix', alt: 'Confusion matrix heatmap' },
-      { key: 'rocCurve', label: 'ROC Curve', alt: 'ROC curve with AUC' },
-      { key: 'featureImportance', label: 'Feature Importance', alt: 'Top feature importance bar chart' },
-      { key: 'trainingCurve', label: 'Training Curve', alt: 'Training/validation loss and metric curves' }
+      {key:'confusionMatrix',label:'Confusion Matrix',alt:'Confusion matrix heatmap'},
+      {key:'rocCurve',label:'ROC Curve',alt:'ROC curve with AUC'},
+      {key:'featureImportance',label:'Feature Importance',alt:'Top feature importance bar chart'},
+      {key:'trainingCurve',label:'Training Curve',alt:'Training/validation loss and metric curves'}
     ];
-    modalResultsGrid.innerHTML = items.map(item => `
+    resultsGrid.innerHTML = items.map(i => `
       <div class="result-card">
-        <h4 class="result-label">${item.label}</h4>
-        <img class="result-img" src="${assets[item.key]}" alt="${item.alt}" loading="lazy" />
-      </div>
-    `).join('');
-  }
-
-  function switchTab(tabId) {
-    tabs.forEach(tab => {
-      const isActive = tab.dataset.tab === tabId;
-      tab.setAttribute('aria-selected', isActive);
-      tab.tabIndex = isActive ? 0 : -1;
-    });
-    panels.forEach(panel => {
-      const isActive = panel.id === `tab-${tabId}`;
-      panel.hidden = !isActive;
-    });
+        <h4 class="result-label">${i.label}</h4>
+        <img class="result-img" src="${project.assets[i.key]}" alt="${i.alt}" loading="lazy" />
+      </div>`).join('');
+    archImg.src = project.assets.architecture;
+    archImg.alt = `${project.title} architecture diagram`;
+    githubLink.href = project.githubUrl;
   }
 
   function open(projectId) {
     const project = window.PROJECT_DATA[projectId];
     if (!project) return;
-
-    currentProject = project;
-    focusBeforeOpen = document.activeElement;
-
-    // Populate content
-    renderBadges(project.badges);
-    modalTitle.innerHTML = `${project.title} <em class="serif">${formatCategory(project.category)}</em>`;
-    modalDescription.textContent = project.description;
-    modalDataset.textContent = project.dataset;
-    renderMeta(project);
-    renderTechStack(project.techStack);
-    renderMetrics(project.metrics);
-    renderResultsGrid(project.assets);
-    modalArchitectureImg.src = project.assets.architecture;
-    modalArchitectureImg.alt = `${project.title} architecture diagram`;
-    githubLink.href = project.githubUrl;
-
-    // Show modal
-    modal.hidden = false;
-    backdrop.hidden = false;
-    requestAnimationFrame(() => {
-      modal.setAttribute('open', '');
-      backdrop.classList.add('visible');
-      document.body.style.overflow = 'hidden';
-      container.focus();
-      focusableElements = getFocusableElements();
-    });
-
-    // Ensure Overview tab is active
-    switchTab('overview');
-
-    // Update URL
+    render(project);
+    focusBefore = document.activeElement;
+    detail.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
     history.pushState(null, '', `#project-${projectId}`);
   }
 
   function close() {
-    if (!modal.hasAttribute('open')) return;
-    modal.removeAttribute('open');
-    backdrop.classList.remove('visible');
+    detail.classList.add('hidden');
     document.body.style.overflow = '';
-    // Wait for transition
-    setTimeout(() => {
-      modal.hidden = true;
-      backdrop.hidden = true;
-      focusBeforeOpen?.focus();
-    }, 250);
+    if (focusBefore) focusBefore.focus();
     history.replaceState(null, '', window.location.pathname);
   }
 
-  function init() {
-    cacheDOM();
-    if (!modal) return;
-    
-    backdrop.addEventListener('click', close);
-    closeBtn.addEventListener('click', close);
-    tabs.forEach(tab => tab.addEventListener('click', () => switchTab(tab.dataset.tab)));
-    document.addEventListener('keydown', handleKeydown);
-    window.addEventListener('hashchange', handleHashChange);
+  function handleKey(e) {
+    if (e.key === 'Escape') close();
+  }
 
-    // Delegate click on project cards
+  function handleHash() {
+    const h = window.location.hash;
+    if (h.startsWith('#project-')) {
+      open(h.slice(9));
+    } else {
+      close();
+    }
+  }
+
+  function init() {
+    if (!detail) return;
+    closeBtn.addEventListener('click', close);
+    document.addEventListener('keydown', handleKey);
+    window.addEventListener('hashchange', handleHash);
     const grid = $('#projects-grid');
     if (grid) {
       grid.addEventListener('click', e => {
         const card = e.target.closest('.project-card');
-        const githubLink = e.target.closest('.project-link');
-        if (githubLink) return; // let default navigation happen
+        const gh = e.target.closest('.project-link');
+        if (gh) return;
         if (card) open(card.dataset.projectId);
       });
-
-      // Keyboard activation for project cards
       grid.addEventListener('keydown', e => {
         if (e.key === 'Enter' || e.key === ' ') {
           const card = e.target.closest('.project-card');
-          if (card) {
-            e.preventDefault();
-            open(card.dataset.projectId);
-          }
+          if (card) { e.preventDefault(); open(card.dataset.projectId); }
         }
       });
     }
-
-    // Initial hash check
-    if (window.location.hash.startsWith('#project-')) {
-      handleHashChange();
-    }
+    if (window.location.hash.startsWith('#project-')) handleHash();
   }
 
-  return { init, open, close };
+  return {init, open, close};
 })();
 
 // ============================================================
@@ -996,6 +860,6 @@ document.addEventListener('DOMContentLoaded', () => {
   ProjectFilter.init();
   ActiveNavLink.init();
   StatCounter.init();
-  ProjectModal.init();
+  ProjectDetail.init();
   ContactForm.init();
 });
