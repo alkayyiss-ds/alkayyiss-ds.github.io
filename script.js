@@ -695,24 +695,42 @@ const ProjectModal = (() => {
   let focusBeforeOpen = null;
   let focusableElements = [];
 
-  const modal = $('#project-modal');
-  const backdrop = $('#modal-backdrop');
-  const container = $('.modal', modal);
-  const closeBtn = $('#modal-close');
-  const tabs = $$('.modal__tab', modal);
-  const panels = $$('.modal__panel', modal);
-  const githubLink = $('#modal-github');
+  // Lazy DOM refs - initialized in init()
+  let modal = null;
+  let backdrop = null;
+  let container = null;
+  let closeBtn = null;
+  let tabs = null;
+  let panels = null;
+  let githubLink = null;
+  let modalBadges = null;
+  let modalTitle = null;
+  let modalDescription = null;
+  let modalDataset = null;
+  let modalMeta = null;
+  let modalTechStack = null;
+  let modalMetricsTable = null;
+  let modalResultsGrid = null;
+  let modalArchitectureImg = null;
 
-  // DOM refs for content
-  const modalBadges = $('#modal-badges');
-  const modalTitle = $('#modal-title');
-  const modalDescription = $('#modal-description');
-  const modalDataset = $('#modal-dataset');
-  const modalMeta = $('#modal-meta');
-  const modalTechStack = $('#modal-tech-stack');
-  const modalMetricsTable = $('#modal-metrics-table tbody');
-  const modalResultsGrid = $('#modal-results-grid');
-  const modalArchitectureImg = $('#modal-architecture-img');
+  function cacheDOM() {
+    modal = $('#project-modal');
+    backdrop = $('#modal-backdrop');
+    container = $('.modal', modal);
+    closeBtn = $('#modal-close');
+    tabs = $$('.modal__tab', modal);
+    panels = $$('.modal__panel', modal);
+    githubLink = $('#modal-github');
+    modalBadges = $('#modal-badges');
+    modalTitle = $('#modal-title');
+    modalDescription = $('#modal-description');
+    modalDataset = $('#modal-dataset');
+    modalMeta = $('#modal-meta');
+    modalTechStack = $('#modal-tech-stack');
+    modalMetricsTable = $('#modal-metrics-table tbody');
+    modalResultsGrid = $('#modal-results-grid');
+    modalArchitectureImg = $('#modal-architecture-img');
+  }
 
   function getFocusableElements() {
     return container.querySelectorAll(
@@ -875,6 +893,9 @@ const ProjectModal = (() => {
   }
 
   function init() {
+    cacheDOM();
+    if (!modal) return;
+    
     backdrop.addEventListener('click', close);
     closeBtn.addEventListener('click', close);
     tabs.forEach(tab => tab.addEventListener('click', () => switchTab(tab.dataset.tab)));
@@ -883,23 +904,25 @@ const ProjectModal = (() => {
 
     // Delegate click on project cards
     const grid = $('#projects-grid');
-    grid.addEventListener('click', e => {
-      const card = e.target.closest('.project-card');
-      const githubLink = e.target.closest('.project-link');
-      if (githubLink) return; // let default navigation happen
-      if (card) open(card.dataset.projectId);
-    });
-
-    // Keyboard activation for project cards
-    grid.addEventListener('keydown', e => {
-      if (e.key === 'Enter' || e.key === ' ') {
+    if (grid) {
+      grid.addEventListener('click', e => {
         const card = e.target.closest('.project-card');
-        if (card) {
-          e.preventDefault();
-          open(card.dataset.projectId);
+        const githubLink = e.target.closest('.project-link');
+        if (githubLink) return; // let default navigation happen
+        if (card) open(card.dataset.projectId);
+      });
+
+      // Keyboard activation for project cards
+      grid.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          const card = e.target.closest('.project-card');
+          if (card) {
+            e.preventDefault();
+            open(card.dataset.projectId);
+          }
         }
-      }
-    });
+      });
+    }
 
     // Initial hash check
     if (window.location.hash.startsWith('#project-')) {
