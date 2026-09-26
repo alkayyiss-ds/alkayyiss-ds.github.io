@@ -9,7 +9,7 @@ window.PROJECT_DATA = {
     badges: ["BDC 2026", "Deep Learning"],
     icon: "green",
     description: "Multi-class image classification for automated waste sorting using transfer learning (EfficientNet). End-to-end pipeline with data augmentation, fine-tuning, and competition submission.",
-    techStack: ["Python", "TensorFlow", "Transfer Learning", "Kaggle"],
+    techStack: ["Python", "TensorFlow", "Transfer Learning", "Data Augmentation"],
     githubUrl: "https://github.com/alkayyiss-ds/waste-classification-ml",
     role: "AI Engineer / Data Scientist",
     status: "Competition Project (BDC 2026)",
