@@ -1129,7 +1129,7 @@ a.contact-item:hover {
   display: none;
   animation: fadeUp 0.3s ease;
 }
-.modal-panel[hidden="false"] {
+.modal-panel:not([hidden]) {
   display: block;
 }
 
