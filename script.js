@@ -403,27 +403,15 @@ function getBadgeClass(category) {
 const ProjectRenderer = (() => {
   const grid = $('#projects-grid');
 
-  function getPlaceholderSvg(title, color) {
-    return `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 250'%3E%3Crect fill='%23F5F5F5' width='400' height='250'/%3E%3Crect fill='${encodeURIComponent(color)}' width='400' height='4'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='system-ui' font-size='16' fill='%23A3A3A3'%3E${encodeURIComponent(title)}%3C/text%3E%3C/svg%3E`;
-  }
-
-  function getIconColor(icon) {
-    const colors = {
-      green: '%2322C55E',
-      blue: '%233B82F6',
-      purple: '%23A855F7',
-      orange: '%23F97316',
-      pink: '%23EC4899',
-      teal: '%2314B8A6'
-    };
-    return colors[icon] || '%2300B4D8';
+  function getPlaceholderSvg(title) {
+    return `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 250'%3E%3Crect fill='%23F5F5F5' width='400' height='250'/%3E%3Crect fill='%2300B4D8' width='400' height='2' opacity='0.4'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='system-ui' font-size='14' font-weight='500' fill='%23737373'%3E${encodeURIComponent(title)}%3C/text%3E%3C/svg%3E`;
   }
 
   function renderCard(project) {
     const cats = project.category.join(' ');
     const badgeHtml = project.badges.map(b => `<span class="badge ${getBadgeClass(project.category[0])}">${b}</span>`).join('');
     const techHtml = project.techStack.slice(0, 4).map(t => `<span class="skill-tag">${t}</span>`).join('');
-    const placeholderSrc = getPlaceholderSvg(project.title, getIconColor(project.icon));
+    const placeholderSrc = getPlaceholderSvg(project.title);
 
     return `
       <article class="project-card card card--interactive reveal" data-category="${cats}" data-project-id="${project.id}" role="listitem" tabindex="0" aria-label="${project.title}">
@@ -510,9 +498,9 @@ const TypingAnimation = (() => {
   const phrases = [
     'Data Science Student',
     'Machine Learning Engineer',
-    'Kaggle Competitor',
-    'AI Enthusiast',
-    'Problem Solver',
+    'AI System Developer',
+    'MLOps Practitioner',
+    'Applied AI Researcher',
   ];
   let phraseIndex = 0;
   let charIndex = 0;
@@ -660,30 +648,41 @@ const ActiveNavLink = (() => {
 const StatCounter = (() => {
   function animateCounter(el, target, suffix = '') {
     let current = 0;
-    const step = target / 35;
+    const duration = 1000;
+    const steps = 25;
+    const stepTime = duration / steps;
+    const increment = target / steps;
     const timer = setInterval(() => {
-      current = Math.min(current + step, target);
-      el.textContent = Math.floor(current) + suffix;
-      if (current >= target) clearInterval(timer);
-    }, 30);
+      current += increment;
+      if (current >= target) {
+        el.textContent = target + suffix;
+        clearInterval(timer);
+      } else {
+        el.textContent = Math.floor(current) + suffix;
+      }
+    }, stepTime);
   }
 
   function init() {
+    const heroStats = $('.hero__stats');
+    if (!heroStats) return;
+
     const statsObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.querySelectorAll('.stat-num').forEach(num => {
-            const text = num.textContent;
-            const value = parseInt(text);
-            const suffix = text.replace(String(value), '');
-            animateCounter(num, value, suffix);
+            const target = parseInt(num.dataset.target || num.textContent, 10);
+            const suffix = num.dataset.suffix || (num.textContent.includes('+') ? '+' : '');
+            if (!isNaN(target) && target > 0) {
+              animateCounter(num, target, suffix);
+            }
           });
           statsObserver.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.5 });
-    const heroStats = $('.hero__stats');
-    if (heroStats) statsObserver.observe(heroStats);
+    }, { threshold: 0.1 });
+
+    statsObserver.observe(heroStats);
   }
   return { init };
 })();

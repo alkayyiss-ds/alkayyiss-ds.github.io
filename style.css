@@ -408,13 +408,27 @@ p { line-height: var(--leading-relaxed); }
   border-radius: var(--radius-full);
   line-height: 1;
   white-space: nowrap;
+  background: var(--color-bg-subtle);
+  color: var(--color-fg-muted);
+  border: 1px solid var(--color-border);
+  transition: all var(--duration-fast) var(--ease-out);
 }
 
-.badge--ml { background: var(--color-accent-subtle); color: var(--color-accent); }
-.badge--cv { background: rgba(34, 197, 94, 0.1); color: #22C55E; }
-.badge--nlp { background: rgba(249, 115, 22, 0.1); color: #F97316; }
-.badge--pm { background: rgba(236, 72, 153, 0.1); color: #EC4899; }
-.badge--stats { background: rgba(139, 92, 246, 0.1); color: #8B5CF6; }
+.badge--ml,
+.badge--accent {
+  background: var(--color-accent-subtle);
+  color: var(--color-accent);
+  border-color: rgba(0, 180, 216, 0.2);
+}
+
+.badge--cv,
+.badge--nlp,
+.badge--pm,
+.badge--stats {
+  background: var(--color-bg-subtle);
+  color: var(--color-fg-muted);
+  border: 1px solid var(--color-border);
+}
 
 .skill-tag {
   display: inline-flex;
@@ -706,6 +720,15 @@ p { line-height: var(--leading-relaxed); }
   content: '';
   width: 40px; height: 1px;
   background: linear-gradient(90deg, var(--color-accent), transparent);
+}
+
+.hero__name {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--color-fg);
+  margin-top: calc(var(--space-2) * -1);
 }
 
 .hero__title {
