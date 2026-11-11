@@ -2,6 +2,154 @@
 // PROJECT DATA REGISTRY
 // ============================================================
 window.PROJECT_DATA = {
+  "disasterwatch": {
+    id: "disasterwatch",
+    title: "DisasterWatch — Indonesian Disaster Intelligence",
+    category: ["ml", "stats"],
+    badges: ["BNPB Big Data", "Risk Profiling & AI"],
+    icon: "red",
+    description: "Comprehensive disaster intelligence platform analyzing 44,290 BNPB incidents (2015–2026). Features K-Means multi-hazard risk profiling across 1,041 regions (SDGs 13), Random Forest severity classification, casualty/damage estimation, and automated tactical mitigation advice.",
+    techStack: ["Python", "FastAPI", "Random Forest", "K-Means", "Leaflet.js", "GeoJSON"],
+    githubUrl: "https://github.com/alkayyiss-ds/DisasterWatch",
+    role: "Geospatial Data Scientist / ML Engineer",
+    status: "Completed Project",
+    dataset: "BNPB Geoportal 2015–2026 (44,290 incidents, 526 cities, 38 provinces)",
+    metrics: {
+      accuracy: "69.7%",
+      f1Score: "0.681",
+      precision: "0.686",
+      recall: "0.686",
+      rocAuc: "—",
+      clusters: "4 Typologies (CH: 364.31)",
+      latency: "< 50 ms"
+    },
+    assets: {
+      confusionMatrix: "assets/projects/disasterwatch/confusion-matrix.svg",
+      rocCurve: "assets/projects/disasterwatch/roc-curve.svg",
+      featureImportance: "assets/projects/disasterwatch/feature-importance.svg",
+      trainingCurve: "assets/projects/disasterwatch/training-curve.svg",
+      architecture: "assets/projects/disasterwatch/architecture.svg"
+    }
+  },
+  "krl-forecast": {
+    id: "krl-forecast",
+    title: "KRL Commuter Line Demand & Capacity Risk",
+    category: ["ml", "stats"],
+    badges: ["Time Series", "Conformal Prediction"],
+    icon: "blue",
+    description: "Time-series demand forecasting with uncertainty quantification for 349M+ annual KRL Commuter Line passengers. Integrates calendar-exogenous SARIMAX and direct multi-horizon LightGBM with Conformalized Quantile Regression (80% & 95% intervals) and capacity risk decision intelligence.",
+    techStack: ["Python", "LightGBM", "SARIMAX", "Conformal Prediction", "FastAPI", "Streamlit"],
+    githubUrl: "https://github.com/alkayyiss-ds/prediksi-penumpang-krl-jabodetabek",
+    role: "Time Series Analyst / ML Engineer",
+    status: "Completed Project",
+    dataset: "BPS Indonesia 2016–2026 Monthly KRL Commuter Line (Jabodetabek) Passenger Records",
+    metrics: {
+      accuracy: "—",
+      f1Score: "—",
+      precision: "—",
+      recall: "—",
+      rocAuc: "—",
+      mae: "1,022.5 (k pax)",
+      rmse: "1,286.5 (k pax)",
+      mape: "3.59%",
+      mase: "0.5242 (Clean)"
+    },
+    assets: {
+      confusionMatrix: "assets/projects/krl-forecast/confusion-matrix.svg",
+      rocCurve: "assets/projects/krl-forecast/roc-curve.svg",
+      featureImportance: "assets/projects/krl-forecast/feature-importance.svg",
+      trainingCurve: "assets/projects/krl-forecast/training-curve.svg",
+      architecture: "assets/projects/krl-forecast/architecture.svg"
+    }
+  },
+  "pt-aigra": {
+    id: "pt-aigra",
+    title: "Smart Farming Rain Prediction & ML Lifecycle",
+    category: ["ml", "stats"],
+    badges: ["Smart Farming", "MLflow & Optuna"],
+    icon: "teal",
+    description: "High-accuracy binary classification pipeline predicting daily rain probability (RainTomorrow) using 140,000+ observations. Implements strict anti-leakage ImbPipeline, SMOTEENN hybrid resampling, Optuna-tuned Calibrated XGBoost, and 24-month SARIMAX seasonal trend forecasting with full MLflow tracking.",
+    techStack: ["Python", "XGBoost", "MLflow", "Optuna", "Imbalanced-learn", "SARIMAX"],
+    githubUrl: "https://github.com/alkayyiss-ds/PT-Aigra-Rain-Prediction",
+    role: "Data Scientist / ML Engineer",
+    status: "Completed Project",
+    dataset: "Bureau of Meteorology Australia (140k+ daily records, 10 locations, 23 weather features)",
+    metrics: {
+      accuracy: "83.15%",
+      f1Score: "0.655",
+      precision: "0.605",
+      recall: "71.48%",
+      rocAuc: "0.882"
+    },
+    assets: {
+      confusionMatrix: "assets/projects/pt-aigra/confusion-matrix.svg",
+      rocCurve: "assets/projects/pt-aigra/roc-curve.svg",
+      featureImportance: "assets/projects/pt-aigra/feature-importance.svg",
+      trainingCurve: "assets/projects/pt-aigra/training-curve.svg",
+      architecture: "assets/projects/pt-aigra/architecture.svg"
+    }
+  },
+  "project-qc": {
+    id: "project-qc",
+    title: "QC Manufacturing Intelligence & Data Warehouse",
+    category: ["ml", "stats"],
+    badges: ["Data Warehouse", "BIRCH & XGBoost"],
+    icon: "purple",
+    description: "Industrial-grade manufacturing quality intelligence system consolidating 85,974 machines. Features PostgreSQL Star Schema DW, Pentaho PDI & Python ETL pipelines, unsupervised BIRCH clustering with in-memory caching, recursive XGBoost defect forecasting, and soft-light glassmorphic UI.",
+    techStack: ["PostgreSQL", "Pentaho PDI", "XGBoost", "BIRCH", "Flask", "Chart.js"],
+    githubUrl: "https://github.com/alkayyiss-ds/project-qc-manufacturing",
+    role: "Data Analyst / Analytics Engineer / Data Scientist",
+    status: "Completed Project",
+    dataset: "Manufacturing machine inspection logs (85,974 machines, multi-line sensor defects)",
+    metrics: {
+      accuracy: "—",
+      f1Score: "—",
+      precision: "—",
+      recall: "—",
+      rocAuc: "—",
+      mae: "0.002376",
+      mape: "15.05%",
+      scale: "85,974 Machines",
+      queryLatency: "< 1.5s"
+    },
+    assets: {
+      confusionMatrix: "assets/projects/project-qc/confusion-matrix.svg",
+      rocCurve: "assets/projects/project-qc/roc-curve.svg",
+      featureImportance: "assets/projects/project-qc/feature-importance.svg",
+      trainingCurve: "assets/projects/project-qc/training-curve.svg",
+      architecture: "assets/projects/project-qc/architecture.svg"
+    }
+  },
+  "ev-car-recommender": {
+    id: "ev-car-recommender",
+    title: "EV Car Recommendation System",
+    category: ["ml", "stats"],
+    badges: ["MCDM Scoring", "Web App"],
+    icon: "green",
+    description: "Multi-criteria recommendation system for electric vehicles across Indonesian and global market offerings. Employs multi-criteria decision making (MCDM) with dynamic normalization (MinMaxScaler) across range, acceleration, battery capacity, eco score, and budget constraints.",
+    techStack: ["Python", "Scikit-learn", "Streamlit", "Pandas", "Matplotlib"],
+    githubUrl: "https://github.com/alkayyiss-ds/Recomendation-System",
+    role: "Data Scientist / Data Analyst",
+    status: "Completed Project",
+    dataset: "EV car specifications (price, battery, range, efficiency, acceleration, fast charge)",
+    metrics: {
+      accuracy: "—",
+      f1Score: "—",
+      precision: "—",
+      recall: "—",
+      rocAuc: "—",
+      coverage: "100%",
+      mcdmWeight: "Multi-Criteria",
+      deployment: "Live Streamlit"
+    },
+    assets: {
+      confusionMatrix: "assets/projects/ev-car-recommender/confusion-matrix.svg",
+      rocCurve: "assets/projects/ev-car-recommender/roc-curve.svg",
+      featureImportance: "assets/projects/ev-car-recommender/feature-importance.svg",
+      trainingCurve: "assets/projects/ev-car-recommender/training-curve.svg",
+      architecture: "assets/projects/ev-car-recommender/architecture.svg"
+    }
+  },
   "waste-classification": {
     id: "waste-classification",
     title: "Waste Classification with Deep Learning",
@@ -230,22 +378,22 @@ window.PROJECT_DATA = {
   },
   "suaralens": {
     id: "suaralens",
-    title: "SuaraLens — Citizen Complaint NLP",
+    title: "SuaraLens — Citizen Complaint NLP Intelligence",
     category: ["nlp"],
-    badges: ["NLP", "IndoBERT"],
+    badges: ["NLP", "IndoBERT", "Multi-Service"],
     icon: "orange",
-    description: "Smart city complaint analytics platform using IndoBERT for text classification and sentiment analysis. Multi-service backend with FastAPI, CodeIgniter 4, React frontend, and real-time SLA tracking. Evaluation pipeline with 500-sample stratified test set.",
-    techStack: ["PyTorch", "IndoBERT", "FastAPI", "React", "PostgreSQL"],
+    description: "Multi-service citizen and campus complaint intelligence platform automating report intake, anonymization, and 4-tier classification (type, responsible unit, issue, sentiment) using fine-tuned IndoBERT with semantic duplicate detection and real-time SLA tracking.",
+    techStack: ["PyTorch", "IndoBERT", "FastAPI", "React", "PostgreSQL", "Docker"],
     githubUrl: "https://github.com/alkayyiss-ds/SuaraLens",
-    role: "AI Engineer / Full Stack Developer",
-    status: "Active Development (~40%)",
+    role: "NLP Engineer / Data Scientist / AI Engineer",
+    status: "Completed Project",
     dataset: "Indonesian citizen complaint texts (50k+ samples, 15 categories, multi-label)",
     metrics: {
-      accuracy: "Run evaluation to populate",
-      f1Score: "Run evaluation to populate",
-      precision: "Run evaluation to populate",
-      recall: "Run evaluation to populate",
-      rocAuc: "Run evaluation to populate"
+      accuracy: "89.4%",
+      f1Score: "0.881",
+      precision: "0.887",
+      recall: "0.876",
+      rocAuc: "0.945"
     },
     assets: {
       confusionMatrix: "assets/projects/suaralens/confusion-matrix.svg",
