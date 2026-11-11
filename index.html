@@ -3,317 +3,183 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Muhammad Naufal Al Kayyis — Data Science Student, ML Engineer. Portfolio of ML, NLP, CV, and Data Science projects.">
-  <meta name="theme-color" content="#00B4D8">
-  <title>Muhammad Naufal Al Kayyis | Data Science & ML Portfolio</title>
+  <title>Muhammad Naufal Al Kayyis | Data Professional</title>
+  <meta name="description" content="Portfolio of Muhammad Naufal Al Kayyis: data warehousing, ETL, dashboards, machine learning serving, and predictive modeling. D4 Applied Data Science, PENS-EEPIS.">
+  <meta name="theme-color" content="#F8FAFC">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Muhammad Naufal Al Kayyis | Data Professional">
+  <meta property="og:description" content="Analytics, data warehousing, and machine learning for business decisions.">
+  <meta property="og:url" content="https://alkayyiss-ds.github.io/">
+  <meta property="og:image" content="https://alkayyiss-ds.github.io/assets/profile/foto-formal.jpg">
+  <meta property="og:site_name" content="Muhammad Naufal Al Kayyis">
+  <meta name="twitter:card" content="summary">
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%231E3A5F'/%3E%3Ctext x='50' y='67' font-size='54' text-anchor='middle' font-family='Arial' font-weight='700' fill='%23F97316'%3EN%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="style.css">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E📊%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="style.css?v=6.0">
 </head>
 <body>
-  <!-- Header / Navbar -->
-  <header class="header" id="navbar" role="banner">
-    <div class="header__inner">
-      <a href="#home" class="header__brand" aria-label="Muhammad Naufal Al Kayyis - Home">M. Naufal Al Kayyis</a>
-      <nav class="nav" role="navigation" aria-label="Main navigation">
-        <ul class="nav__list">
-          <li><a href="#projects" class="nav__link">Projects</a></li>
-          <li><a href="#skills" class="nav__link">Skills</a></li>
-          <li><a href="#about" class="nav__link">About</a></li>
-          <li><a href="#contact" class="nav__link">Contact</a></li>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="progress" aria-hidden="true"><div class="progress__bar" id="progress"></div></div>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="#about"><span class="brand__mark" aria-hidden="true">N</span>Naufal Al Kayyis</a>
+      <nav aria-label="Main">
+        <ul class="nav">
+          <li><a href="#about">About</a></li>
+          <li><a href="#role-project">Projects</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
-        <a href="#contact" class="btn btn--primary btn--sm nav__cta">Get in Touch</a>
       </nav>
     </div>
   </header>
 
-  <main id="main-content">
-    <!-- Hero Section -->
-    <section class="hero" id="home" aria-labelledby="hero-title">
-      <div class="hero__bg" aria-hidden="true"></div>
-      <div class="hero__content">
-          <p class="hero__eyebrow">Data Science Student · ML Engineer</p>
-          <h2 class="hero__name">Muhammad Naufal Al Kayyis</h2>
-          <p class="hero__eyebrow word-reveal" style="min-height: 1.5em;">
-            <span id="typing-text"></span><span class="cursor" aria-hidden="true"></span>
-          </p>
-          <h1 class="hero__title" id="hero-title">
-            Building Intelligent Systems<br>
-            <em class="serif">that solve real problems</em>
-          </h1>
-          <p class="hero__desc">
-            I design and deploy end-to-end machine learning solutions — from data engineering and model training to production MLOps pipelines. Currently exploring multimodal LLMs, time-series forecasting, and AI product strategy.
-          </p>
-          <div class="hero__actions">
-            <a href="#projects" class="btn btn--primary">View Projects</a>
-            <a href="#contact" class="btn btn--secondary">Let's Collaborate</a>
+  <main id="main">
+    <!-- ============================== ABOUT ============================== -->
+    <section id="about" class="intro" aria-labelledby="about-title">
+      <div class="container">
+        <div class="hero">
+          <div class="hero__text">
+            <p class="hero__eyebrow"><span class="hero__dot" aria-hidden="true"></span>Muhammad Naufal Al Kayyis <span class="hero__role">Data professional</span></p>
+            <h1 id="about-title" class="headline">Analytics, data warehousing, and machine learning for <span class="headline__mark">business decisions.</span></h1>
+            <p class="lead">
+              I am a D4 Applied Data Science student at Politeknik Elektronika Negeri Surabaya (PENS-EEPIS), graduating in 2028 with a GPA of 3.53/4.00.
+              My core skills are SQL, Python, PostgreSQL data warehousing, ETL, dashboards, predictive modeling, and Docker.
+              I am building toward a Data Scientist role.
+            </p>
+            <p class="hero__actions">
+              <a class="button" href="#role-project">See the projects <span data-icon="arrow" data-size="20"></span></a>
+              <a class="text-link" href="#contact">Get in touch</a>
+            </p>
           </div>
-          <div class="hero__stats" role="list" aria-label="Key metrics">
-            <div class="hero__stat" role="listitem">
-              <div class="hero__stat-num stat-num" data-target="17">17</div>
-              <div class="hero__stat-label">Projects</div>
+
+          <div class="hero__visual">
+            <div class="hero__pattern" aria-hidden="true"></div>
+            <img class="hero__photo" src="assets/profile/foto-formal.jpg" alt="Muhammad Naufal Al Kayyis in a black suit and tie, arms crossed" width="640" height="823" fetchpriority="high" decoding="async">
+            <div class="badge badge--top">
+              <span class="badge__icon" data-icon="trophy" data-size="18"></span>
+              <span><strong>#64 of 180 teams</strong><small>BDC 2026, Satria Data</small></span>
             </div>
-            <div class="hero__stat" role="listitem">
-              <div class="hero__stat-num stat-num" data-target="5">5</div>
-              <div class="hero__stat-label">Domains</div>
-            </div>
-            <div class="hero__stat" role="listitem">
-              <div class="hero__stat-num stat-num" data-target="20" data-suffix="+">20+</div>
-              <div class="hero__stat-label">Tech Stack</div>
+            <div class="badge badge--bottom">
+              <span class="badge__icon" data-icon="cap" data-size="18"></span>
+              <span><strong>GPA 3.53 / 4.00</strong><small>Applied Data Science, PENS</small></span>
             </div>
           </div>
+        </div>
+
+        <ul class="bento" aria-label="Key facts">
+          <li class="bento__item reveal">
+            <span class="bento__icon" data-icon="calendar"></span>
+            <span class="bento__value">2028</span>
+            <span class="bento__label">Graduating, D4 Applied Data Science</span>
+          </li>
+          <li class="bento__item reveal">
+            <span class="bento__icon" data-icon="trophy"></span>
+            <span class="bento__value">#188<small> / 283</small></span>
+            <span class="bento__label">Datathon UI 2026, Task 2, teams</span>
+          </li>
+          <li class="bento__item reveal">
+            <span class="bento__icon" data-icon="layers"></span>
+            <span class="bento__value">6</span>
+            <span class="bento__label">Case studies across three roles</span>
+          </li>
+          <li class="bento__item bento__item--dark reveal">
+            <span class="bento__icon" data-icon="users"></span>
+            <span class="bento__value">3</span>
+            <span class="bento__label">Leadership roles in campus organizations</span>
+          </li>
+        </ul>
+
+        <div class="intro__section">
+          <div class="intro__heading">
+            <h2 class="label">Three roles, one direction</h2>
+            <p class="intro__note">Each role is a chapter below. The direction is Data Scientist.</p>
+          </div>
+          <ol class="role-cards" id="role-cards"></ol>
+        </div>
+
+        <div class="intro__section">
+          <div class="intro__heading">
+            <h2 class="label">Leadership</h2>
+          </div>
+          <ul class="lead-cards">
+            <li class="lead-card reveal"><span class="lead-card__icon" data-icon="flag" data-size="18"></span><span><strong>Head of Event Department</strong><small>LMB PENS</small></span></li>
+            <li class="lead-card reveal"><span class="lead-card__icon" data-icon="users" data-size="18"></span><span><strong>Head of Security Division</strong><small>Minat Bakat Expo PENS</small></span></li>
+            <li class="lead-card reveal"><span class="lead-card__icon" data-icon="layers" data-size="18"></span><span><strong>Steering Committee, Event Division</strong><small>EEPIS Competition</small></span></li>
+          </ul>
         </div>
       </div>
     </section>
 
-    <!-- Projects Section -->
-    <section class="projects section" id="projects" aria-labelledby="projects-title">
+    <!-- ========================= ROLE & PROJECTS ========================= -->
+    <section id="role-project" class="section section--tint" aria-labelledby="projects-title">
       <div class="container">
-        <header class="section-header">
-          <span class="eyebrow">Featured Work</span>
-          <h2 id="projects-title">Selected Projects</h2>
-          <p>End-to-end ML systems, research prototypes, and production-ready pipelines across Computer Vision, NLP, Time Series, and MLOps.</p>
+        <header class="section__header reveal">
+          <p class="kicker">Case studies</p>
+          <h2 id="projects-title" class="section__title">Role &amp; projects</h2>
+          <p class="section__intro">Each card shows the problem, the result in numbers, and how the work flows. Open “Read the case study” for what I built and the decisions behind it. In team projects I describe my own part only.</p>
         </header>
-
-        <div class="projects__header">
-          <div class="projects__filters" role="group" aria-label="Filter projects by category">
-            <button class="filter-btn active" data-filter="all" aria-pressed="true">All</button>
-            <button class="filter-btn" data-filter="ml" aria-pressed="false">ML</button>
-            <button class="filter-btn" data-filter="cv" aria-pressed="false">Computer Vision</button>
-            <button class="filter-btn" data-filter="nlp" aria-pressed="false">NLP</button>
-            <button class="filter-btn" data-filter="pm" aria-pressed="false">Product</button>
-            <button class="filter-btn" data-filter="stats" aria-pressed="false">Statistics</button>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-4 projects__grid" id="projects-grid" role="list">
-          <!-- Project cards injected by JS -->
-        </div>
+        <div id="project-groups"></div>
+        <noscript><p>The project list needs JavaScript. All projects are on <a href="https://github.com/alkayyiss-ds">GitHub</a>.</p></noscript>
       </div>
     </section>
 
-    <!-- Skills Section -->
-    <section class="skills section" id="skills" aria-labelledby="skills-title">
+    <!-- ============================== SKILLS ============================== -->
+    <section id="skills" class="section" aria-labelledby="skills-title">
       <div class="container">
-        <header class="section-header">
-          <span class="eyebrow">Technical Toolkit</span>
-          <h2 id="skills-title">Skills & Technologies</h2>
-          <p>Languages, frameworks, and platforms I use to build and deploy ML systems.</p>
+        <header class="section__header reveal">
+          <p class="kicker">Toolbox</p>
+          <h2 id="skills-title" class="section__title">Skills</h2>
+          <p class="section__intro">Tools I have used in the projects above, grouped by role.</p>
         </header>
-        <div class="grid grid-cols-3 skills__grid" id="skills-grid" role="list">
-          <!-- Skill categories injected by JS -->
-        </div>
+        <div id="skill-groups" class="skill-cards"></div>
       </div>
     </section>
 
-    <!-- About Section -->
-    <section class="section" id="about" aria-labelledby="about-title">
+    <!-- ============================== CONTACT ============================== -->
+    <section id="contact" class="section section--contact" aria-labelledby="contact-title">
       <div class="container">
-        <div class="about__grid">
-          <div class="about__text">
-            <header class="section-header" style="text-align:left; max-width:none; margin-bottom:var(--space-8);">
-              <span class="eyebrow">About Me</span>
-              <h2 id="about-title">Data Scientist passionate about <em class="serif">production ML</em></h2>
-            </header>
-            <p>I'm Muhammad Naufal Al Kayyis, a final-year Data Science student at EEPIS with 2+ years building ML systems — from competition kernels to production APIs. My focus: <strong>reliable, scalable ML</strong> that ships.</p>
-            <p>I've worked across the full stack: data pipelines, model training, experiment tracking, containerized deployment, and monitoring. Currently exploring <em>LLM evaluation</em>, <em>multimodal retrieval</em>, and <em>AI product strategy</em>.</p>
-
-            <div class="about__highlights">
-              <div class="highlight">
-                <div class="highlight__num">17</div>
-                <div class="highlight__label">Projects Completed</div>
-              </div>
-              <div class="highlight">
-                <div class="highlight__num">5</div>
-                <div class="highlight__label">Domains (CV, NLP, TS, MLOps, Spatial)</div>
-              </div>
-              <div class="highlight">
-                <div class="highlight__num">20+</div>
-                <div class="highlight__label">Technologies</div>
-              </div>
-              <div class="highlight">
-                <div class="highlight__num">3</div>
-                <div class="highlight__label">Competition Top 10%</div>
-              </div>
-            </div>
+        <div class="contact reveal">
+          <div class="contact__text">
+            <p class="kicker kicker--light">Contact</p>
+            <h2 id="contact-title" class="contact__title">Have a problem that data could answer?</h2>
+            <p class="contact__lead">If one of these projects looks like something you are working on, I would like to hear about it.</p>
           </div>
-
-          <aside class="about__sidebar">
-            <div class="info-card">
-              <h3 class="info-card__title">Current Focus</h3>
-              <ul class="info-card__list">
-                <li class="info-card__item">
-                  <span class="info-card__label">Learning</span>
-                  <span class="info-card__value">LLM Fine-tuning & RAG</span>
-                </li>
-                <li class="info-card__item">
-                  <span class="info-card__label">Building</span>
-                  <span class="info-card__value">Interview Training AI</span>
-                </li>
-                <li class="info-card__item">
-                  <span class="info-card__label">Exploring</span>
-                  <span class="info-card__value">Agentic Workflows</span>
-                </li>
-              </ul>
-            </div>
-
-            <div class="info-card">
-              <h3 class="info-card__title">Background</h3>
-              <ul class="info-card__list">
-                <li class="info-card__item">
-                  <span class="info-card__label">Education</span>
-                  <span class="info-card__value">EEPIS — Data Science</span>
-                </li>
-                <li class="info-card__item">
-                  <span class="info-card__label">Role</span>
-                  <span class="info-card__value">AI Engineer / ML Engineer</span>
-                </li>
-                <li class="info-card__item">
-                  <span class="info-card__label">Location</span>
-                  <span class="info-card__value">Surabaya, Indonesia</span>
-                </li>
-              </ul>
-            </div>
-
-            <div class="info-card">
-              <h3 class="info-card__title">Profiles</h3>
-              <ul class="info-card__list">
-                <li class="info-card__item">
-                  <span class="info-card__label">GitHub</span>
-                  <span class="info-card__value">alkayyiss-ds</span>
-                </li>
-                <li class="info-card__item">
-                  <span class="info-card__label">LinkedIn</span>
-                  <span class="info-card__value">naufal-kayyis</span>
-                </li>
-              </ul>
-            </div>
-          </aside>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="contact section" id="contact" aria-labelledby="contact-title">
-      <div class="container">
-        <header class="section-header">
-          <span class="eyebrow">Get In Touch</span>
-          <h2 id="contact-title">Let's Build Something</h2>
-          <p>Open to full-time roles, freelance projects, research collaborations, or just a good conversation about ML.</p>
-        </header>
-
-        <div class="contact__grid">
-          <div class="contact__info">
-            <p class="contact__desc">I'm currently seeking <strong>ML Engineer / AI Engineer</strong> positions. Whether you have an open role, a project in mind, or want to discuss machine learning systems — feel free to reach out.</p>
-
-            <div class="contact__links">
-              <a href="mailto:naufalkayyiss@gmail.com" class="contact-link">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-                <div class="contact-link__text">
-                  <span class="contact-link__label">Email</span>
-                  <span class="contact-link__value">naufalkayyiss@gmail.com</span>
-                </div>
-              </a>
-              <a href="https://github.com/alkayyiss-ds" target="_blank" rel="noopener" class="contact-link">
-                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
-                <div class="contact-link__text">
-                  <span class="contact-link__label">GitHub</span>
-                  <span class="contact-link__value">alkayyiss-ds</span>
-                </div>
-              </a>
-              <a href="https://www.linkedin.com/in/naufal-kayyis/" target="_blank" rel="noopener" class="contact-link">
-                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                <div class="contact-link__text">
-                  <span class="contact-link__label">LinkedIn</span>
-                  <span class="contact-link__value">naufal-kayyis</span>
-                </div>
-              </a>
-            </div>
+          <div class="contact__actions">
+            <a class="button" href="mailto:naufalkayyiss@gmail.com">Email me <span data-icon="arrow" data-size="20"></span></a>
+            <a class="contact__email" href="mailto:naufalkayyiss@gmail.com">naufalkayyiss@gmail.com</a>
+            <ul class="contact__links">
+              <li>
+                <a href="https://github.com/alkayyiss-ds" target="_blank" rel="noopener">
+                  <svg class="icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.7 5.4-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5Z"/></svg>
+                  GitHub<span class="visually-hidden"> (opens in a new tab)</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.linkedin.com/in/naufal-kayyis" target="_blank" rel="noopener">
+                  <svg class="icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg>
+                  LinkedIn<span class="visually-hidden"> (opens in a new tab)</span>
+                </a>
+              </li>
+            </ul>
           </div>
-
-          <form class="contact__form" id="contact-form" action="https://formspree.io/f/your-form-id" method="POST" aria-label="Contact form">
-            <div class="form-row">
-              <div class="form-group">
-                <label for="name" class="label">Name</label>
-                <input type="text" id="name" name="name" class="input" placeholder="Your name" required>
-              </div>
-              <div class="form-group">
-                <label for="email" class="label">Email</label>
-                <input type="email" id="email" name="email" class="input" placeholder="you@example.com" required>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="subject" class="label">Subject</label>
-              <input type="text" id="subject" name="subject" class="input" placeholder="Project inquiry / Collaboration / Hello">
-            </div>
-            <div class="form-group">
-              <label for="message" class="label">Message</label>
-              <textarea id="message" name="message" class="input" rows="5" placeholder="Tell me about your project..." required></textarea>
-            </div>
-            <button type="submit" class="btn btn--primary btn--lg form-submit">
-              <span>Send Message</span>
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-            </button>
-          </form>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- Project Detail Section (replaces modal) -->
-  <section id="project-detail" class="project-detail hidden" aria-labelledby="detail-title">
-    <button class="detail-close" aria-label="Close detail view">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-    </button>
-    <div class="detail__content">
-      <div class="detail__header">
-        <div class="detail__badges" id="detail-badges" aria-label="Project tags"></div>
-        <h2 class="detail__title" id="detail-title"></h2>
-      </div>
-      <section class="detail__section" id="detail-overview">
-        <h3 class="detail__section-title">Description</h3>
-        <p class="detail__description" id="detail-description"></p>
-        <h3 class="detail__section-title">Dataset</h3>
-        <p class="detail__dataset" id="detail-dataset"></p>
-      </section>
-      <section class="detail__section" id="detail-metrics">
-        <h3 class="detail__section-title">Metrics</h3>
-        <table class="detail__metrics-table" id="detail-metrics-table"></table>
-      </section>
-      <section class="detail__section" id="detail-tech">
-        <h3 class="detail__section-title">Tech Stack</h3>
-        <ul class="detail__tech" id="detail-tech"></ul>
-      </section>
-      <section class="detail__section" id="detail-results">
-        <h3 class="detail__section-title">Visualizations</h3>
-        <div class="detail__results-grid" id="detail-results-grid"></div>
-      </section>
-      <section class="detail__section" id="detail-architecture">
-        <h3 class="detail__section-title">System Architecture</h3>
-        <img class="detail__architecture-img" id="detail-architecture-img" alt="Architecture diagram" loading="lazy" />
-      </section>
-      <a id="detail-github" class="btn btn--primary" target="_blank" rel="noopener">View on GitHub</a>
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <p>&copy; <span id="year"></span> Muhammad Naufal Al Kayyis</p>
+      <p><a href="#about">Back to top</a></p>
     </div>
-  </section>
+  </footer>
 
-    <div class="footer__inner">
-      <p class="footer__brand">Muhammad Naufal Al Kayyis</p>
-      <p class="footer__copyright">&copy; 2025 Muhammad Naufal Al Kayyis.</p>
-      <div class="footer__socials">
-        <a href="https://github.com/alkayyiss-ds" target="_blank" rel="noopener" class="footer__social" aria-label="GitHub">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
-        </a>
-        <a href="https://www.linkedin.com/in/naufal-kayyis/" target="_blank" rel="noopener" class="footer__social" aria-label="LinkedIn">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-        </a>
-        <a href="mailto:naufalkayyiss@gmail.com" class="footer__social" aria-label="Email">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-        </a>
-      </div>
-    </div>
-      </footer>
-
-      <script src="script.js?v=2.8"></script>
-    </body>
-    </html>
+  <script src="script.js?v=6.0"></script>
+</body>
+</html>
