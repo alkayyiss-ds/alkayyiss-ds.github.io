@@ -8,7 +8,7 @@ window.PROJECT_DATA = {
     category: ["ml", "stats"],
     badges: ["BNPB Big Data", "Risk Profiling & AI"],
     icon: "red",
-    description: "Comprehensive disaster intelligence platform analyzing 44,290 BNPB incidents (2015–2026). Features K-Means multi-hazard risk profiling across 1,041 regions (SDGs 13), Random Forest severity classification, casualty/damage estimation, and automated tactical mitigation advice.",
+    description: "Comprehensive disaster intelligence platform analyzing 44,290 BNPB incidents (2015–2026). Features EDA, data cleaning and preprocessing, K-Means multi-hazard risk profiling across 1,041 regions (SDGs 13), Random Forest severity classification, casualty/damage estimation, and automated tactical mitigation advice.",
     techStack: ["Python", "FastAPI", "Random Forest", "K-Means", "Leaflet.js", "GeoJSON"],
     githubUrl: "https://github.com/alkayyiss-ds/DisasterWatch",
     role: "Geospatial Data Scientist / ML Engineer",
@@ -107,10 +107,11 @@ window.PROJECT_DATA = {
       precision: "—",
       recall: "—",
       rocAuc: "—",
-      mae: "0.002376",
-      mape: "15.05%",
+      mae: "0.008469 (walk-forward CV)",
+      rmse: "0.010510 (walk-forward CV)",
+      mape: "10.96% (walk-forward CV)",
       scale: "85,974 Machines",
-      queryLatency: "< 1.5s"
+      queryLatency: "—"
     },
     assets: {
       confusionMatrix: "assets/projects/project-qc/confusion-matrix.svg",
@@ -127,7 +128,7 @@ window.PROJECT_DATA = {
     badges: ["MCDM Scoring", "Web App"],
     icon: "green",
     description: "Multi-criteria recommendation system for electric vehicles across Indonesian and global market offerings. Employs multi-criteria decision making (MCDM) with dynamic normalization (MinMaxScaler) across range, acceleration, battery capacity, eco score, and budget constraints.",
-    techStack: ["Python", "Scikit-learn", "Streamlit", "Pandas", "Matplotlib"],
+    techStack: ["Python", "Flask", "Scikit-learn", "Pandas", "Vercel"],
     githubUrl: "https://github.com/alkayyiss-ds/Recomendation-System",
     role: "Data Scientist / Data Analyst",
     status: "Completed Project",
@@ -138,9 +139,9 @@ window.PROJECT_DATA = {
       precision: "—",
       recall: "—",
       rocAuc: "—",
-      coverage: "100%",
+      coverage: "—",
       mcdmWeight: "Multi-Criteria",
-      deployment: "Live Streamlit"
+      deployment: "Live Vercel"
     },
     assets: {
       confusionMatrix: "assets/projects/ev-car-recommender/confusion-matrix.svg",
@@ -163,11 +164,11 @@ window.PROJECT_DATA = {
     status: "Competition Project (BDC 2026)",
     dataset: "BDC 2026 Waste Images (~10k images, 6 classes: organic, recyclable, hazardous, etc.)",
     metrics: {
-      accuracy: "94.2%",
-      f1Score: "0.938",
-      precision: "0.941",
-      recall: "0.935",
-      rocAuc: "0.987"
+      accuracy: "—",
+      f1Score: "—",
+      precision: "—",
+      recall: "—",
+      rocAuc: "—"
     },
     assets: {
       confusionMatrix: "assets/projects/waste-classification/confusion-matrix.svg",
@@ -183,21 +184,21 @@ window.PROJECT_DATA = {
     category: ["ml"],
     badges: ["Time Series", "Forecasting"],
     icon: "blue",
-    description: "End-to-end time series forecasting pipeline for urban traffic speed prediction. Combines feature engineering (lag features, rolling stats, cyclical encoding) with XGBoost models. Cross-validated across multiple road segments with 6-month forecast horizon.",
-    techStack: ["Python", "XGBoost", "Time Series", "Feature Engineering"],
+    description: "Multi-horizon traffic speed forecasting (+5, +10, +15 timesteps) over 1,260 road segments. Combines 15-step autoregressive lags, incident text keywords, and road metadata with per-horizon LightGBM regressors and a time-based 85:15 split.",
+    techStack: ["Python", "LightGBM", "Time Series", "Feature Engineering"],
     githubUrl: "https://github.com/alkayyiss-ds/traffic-speed-forecasting",
     role: "Data Scientist / ML Engineer",
     status: "Completed Project",
-    dataset: "Urban traffic sensor data (100k+ records, 15-min intervals, multiple road segments)",
+    dataset: "Roads1260 speed sensors (1,260 road segments) + incident text reports",
     metrics: {
       accuracy: "—",
       f1Score: "—",
       precision: "—",
       recall: "—",
       rocAuc: "—",
-      mae: "0.0085 (CV)",
-      rmse: "0.0105 (CV)",
-      mape: "10.96% (CV)",
+      mae: "—",
+      rmse: "—",
+      mape: "—",
       r2: "—"
     },
     assets: {
@@ -221,11 +222,11 @@ window.PROJECT_DATA = {
     status: "Research Project",
     dataset: "T-SROIE benchmark (financial document images with word-level tampering annotations)",
     metrics: {
-      accuracy: "91.7%",
-      f1Score: "0.894",
-      precision: "0.902",
-      recall: "0.887",
-      rocAuc: "0.965"
+      accuracy: "—",
+      f1Score: "—",
+      precision: "—",
+      recall: "—",
+      rocAuc: "—"
     },
     assets: {
       confusionMatrix: "assets/projects/text-tampering/confusion-matrix.svg",
@@ -249,12 +250,12 @@ window.PROJECT_DATA = {
     dataset: "3300+ Wikipedia page screenshots, extracted link graph (50k+ nodes, 200k+ edges)",
     metrics: {
       accuracy: "—",
-      f1Score: "0.723",
-      precision: "0.731",
-      recall: "0.715",
-      rocAuc: "0.842",
-      mrr: "0.687",
-      ndcg10: "0.754"
+      f1Score: "—",
+      precision: "—",
+      recall: "—",
+      rocAuc: "—",
+      mrr: "—",
+      ndcg10: "—"
     },
     assets: {
       confusionMatrix: "assets/projects/wiki-prediction/confusion-matrix.svg",
@@ -324,7 +325,7 @@ window.PROJECT_DATA = {
     category: ["ml", "pm"],
     badges: ["MLOps", "Supply Chain"],
     icon: "purple",
-    description: "End-to-end MLOps platform for supply chain decision support. Integrates XGBoost risk prediction (Test AUC-ROC 0.756), demand forecasting (CV MAE 0.0085), and AHP supplier selection in a Docker-orchestrated FastAPI + React + PostgreSQL stack.",
+    description: "End-to-end MLOps platform for supply chain decision support. Integrates XGBoost risk prediction (Test AUC-ROC 0.756), demand forecasting (R² 0.9742), and AHP supplier selection in a Docker-orchestrated FastAPI + React + PostgreSQL stack.",
     techStack: ["FastAPI", "XGBoost", "PostgreSQL", "Docker", "React", "Optuna"],
     githubUrl: "https://github.com/Josshua-DSA/Neo-Horcrox-Project",
     role: "AI Engineer / MLOps Engineer",
@@ -336,10 +337,10 @@ window.PROJECT_DATA = {
       precision: "0.772 (test)",
       recall: "0.630 (test)",
       rocAuc: "0.756 (test)",
-      mae: "0.0085 (CV)",
-      rmse: "0.0105 (CV)",
-      mape: "10.96% (CV)",
-      r2: "0.974"
+      mae: "127.53",
+      rmse: "341.10",
+      mape: "—",
+      r2: "0.9742"
     },
     assets: {
       confusionMatrix: "assets/projects/neo-horcrox/confusion-matrix.svg",
@@ -386,14 +387,14 @@ window.PROJECT_DATA = {
     techStack: ["PyTorch", "IndoBERT", "FastAPI", "React", "PostgreSQL", "Docker"],
     githubUrl: "https://github.com/alkayyiss-ds/SuaraLens",
     role: "NLP Engineer / Data Scientist / AI Engineer",
-    status: "Completed Project",
-    dataset: "Indonesian citizen complaint texts (50k+ samples, 15 categories, multi-label)",
+    status: "Active Development (~40%)",
+    dataset: "Indonesian citizen complaint texts (synthetic generator data; real data not yet available)",
     metrics: {
-      accuracy: "89.4%",
-      f1Score: "0.881",
-      precision: "0.887",
-      recall: "0.876",
-      rocAuc: "0.945"
+      accuracy: "—",
+      f1Score: "—",
+      precision: "—",
+      recall: "—",
+      rocAuc: "—"
     },
     assets: {
       confusionMatrix: "assets/projects/suaralens/confusion-matrix.svg",
@@ -436,8 +437,8 @@ window.PROJECT_DATA = {
     category: ["ml", "nlp"],
     badges: ["Recommender", "Matrix Factorization"],
     icon: "orange",
-    description: "Movie recommendation system using collaborative filtering with matrix factorization (SVD/ALS). Implements user-based and item-based approaches with implicit feedback handling.",
-    techStack: ["Python", "Surprise", "Implicit", "Pandas", "Scikit-learn"],
+    description: "Movie recommendation system using user-based and item-based collaborative filtering with cosine similarity on the MovieLens dataset. Evaluation metrics are pending.",
+    techStack: ["Python", "Pandas", "Scikit-learn", "Jupyter"],
     githubUrl: "https://github.com/alkayyiss-ds/collaborative-filtering-recommender",
     role: "Data Scientist / ML Engineer",
     status: "Completed Project",
@@ -445,12 +446,12 @@ window.PROJECT_DATA = {
     metrics: {
       accuracy: "—",
       f1Score: "—",
-      precision: "0.723",
-      recall: "0.687",
+      precision: "—",
+      recall: "—",
       rocAuc: "—",
-      rmse: "0.892",
-      mae: "0.691",
-      coverage: "94.2%"
+      rmse: "—",
+      mae: "—",
+      coverage: "—"
     },
     assets: {
       confusionMatrix: "assets/projects/collaborative-filtering/confusion-matrix.svg",
@@ -462,16 +463,16 @@ window.PROJECT_DATA = {
   },
   "ml-pipeline": {
     id: "ml-pipeline",
-    title: "ML Pipeline Framework",
+    title: "ETL Data Pipeline MBG — Airflow & PySpark",
     category: ["ml"],
-    badges: ["Framework", "MLOps"],
+    badges: ["Data Engineering", "Airflow"],
     icon: "green",
-    description: "Modular end-to-end ML pipeline template with FastAPI backend, PyTorch/TensorFlow support, structured notebooks, Docker deployment, and pytest testing suite.",
-    techStack: ["FastAPI", "PyTorch", "TensorFlow", "Docker", "Pytest"],
-    githubUrl: "https://github.com/alkayyiss-ds/ml-pipeline-framework",
-    role: "ML Engineer / Platform Engineer",
-    status: "Boilerplate Framework",
-    dataset: "N/A — Framework template (includes dataset download scripts)",
+    description: "End-to-end ETL pipeline for Makan Bergizi Gratis (MBG) program data, orchestrated with Apache Airflow, processed with PySpark, and deployed via Docker Compose. Includes a synthetic data generator for testing.",
+    techStack: ["Apache Airflow", "PySpark", "Docker Compose", "Sqoop", "SQL"],
+    githubUrl: "https://github.com/alkayyiss-ds/etl-pipeline-airflow",
+    role: "AI Engineer / Data Engineer",
+    status: "Pipeline Built (not yet run end-to-end)",
+    dataset: "Synthetic MBG transaction data (generated with scripts/generate_data_mbg.py)",
     metrics: {
       accuracy: "N/A",
       f1Score: "N/A",
