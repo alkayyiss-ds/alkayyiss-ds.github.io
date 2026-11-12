@@ -10,9 +10,12 @@
        10%  #F97316  calls to action (buttons) and the reading-progress bar
      White on #F97316 is about 2.8:1 and fails WCAG, so buttons use navy text
      at 19px bold (WCAG "large text"): about 4.1:1. Orange is never body text.
+   v7/v8: orange grows to about 25%, as a few big blocks. Accents (bars, icons, blobs, tints) use
+     #F97316 and its soft tints. Small orange text uses --accent-deep #C2410C
+     (about 5:1 on white), and small text on orange fills uses white on deep.
    ========================================================================== */
 :root {
-  --bg: #F8FAFC;
+  --bg: #FFFFFF;
   --surface: #FFFFFF;
   --ink: #1E3A5F;
   --ink-strong: #152C49;
@@ -23,6 +26,10 @@
   --tint-strong: #DCE7F3;
   --accent: #F97316;
   --accent-hover: #EA580C;
+  --accent-deep: #C2410C;   /* text-safe orange, about 5:1 on white */
+  --accent-ink: #9A3412;    /* about 6.6:1 on --accent-soft */
+  --accent-soft: #FFEDD5;
+  --accent-tint: #FFF7ED;
   --on-dark: #FFFFFF;
   --on-dark-muted: #CBD5E1; /* about 7.8:1 on --ink */
   --todo-bg: #FFF3C4;
@@ -106,11 +113,11 @@ code {
    ========================================================================== */
 .site-header {
   position: sticky; top: 0; z-index: 100;
-  background: rgba(248, 250, 252, .9);
+  background: rgba(255, 255, 255, .92);
   border-bottom: 1px solid var(--rule);
 }
 @supports (backdrop-filter: blur(10px)) {
-  .site-header { background: rgba(248, 250, 252, .75); backdrop-filter: saturate(1.4) blur(10px); }
+  .site-header { background: rgba(255, 255, 255, .8); backdrop-filter: saturate(1.4) blur(10px); }
 }
 .site-header__inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 4rem; }
 
@@ -431,7 +438,6 @@ html.motion-ok .reveal { opacity: 0; transform: translateY(14px); transition: op
 html.motion-ok .reveal.is-visible { opacity: 1; transform: none; }
 
 @media (prefers-reduced-motion: no-preference) {
-  .role-card:hover, .case:hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); }
   .button:hover { transform: translateY(-1px); box-shadow: 0 12px 24px -10px rgba(249, 115, 22, .8); }
   .gallery__item a:hover img { transform: scale(1.03); }
 }
@@ -441,6 +447,237 @@ html.motion-ok .reveal.is-visible { opacity: 1; transform: none; }
   *, *::before, *::after { transition-duration: 0s !important; }
   .progress { display: none; }
 }
+
+/* ==========================================================================
+   Orange layout (v8): few large blocks, no stacks of small boxes.
+   Solid orange blocks: the facts band, the case "business value" callout and
+   the contact block. Everything else is flat: type, rules and orange bars.
+   Text on orange is --ink-strong (about 4.7:1). Nothing overlaps the photo.
+   ========================================================================== */
+.kicker { color: var(--accent-deep); }
+.kicker::before { background: var(--accent); width: 2rem; }
+.section__title::after { content: ""; display: block; width: 3.25rem; height: 4px; margin-top: .8rem; border-radius: 4px; background: var(--accent); }
+
+.nav a:hover { background: var(--accent-tint); }
+.nav a[aria-current="true"] { background: var(--accent-soft); color: var(--ink-strong); }
+.brand__mark { box-shadow: 0 0 0 2px var(--accent); }
+.site-header { border-bottom-color: var(--accent-soft); }
+
+/* Hero: keep the photo clean. Only two blobs, both outside the face area. */
+.hero__dot { background: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
+.hero__eyebrow { border-color: var(--accent-soft); }
+.headline__mark { background: linear-gradient(transparent 58%, #FED7AA 58%, #FED7AA 92%, transparent 92%); }
+.text-link { text-decoration-color: var(--accent); }
+.text-link:hover { text-decoration-color: var(--accent-hover); }
+.hero__pattern { display: none; }
+.badge__icon { background: var(--accent); color: var(--ink-strong); }
+
+.hero__fx { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+.hero__fx-layer { position: absolute; will-change: transform; }
+.hero__fx-blob { width: 100%; height: 100%; border-radius: 50%; background: #FDBA74; opacity: .8; }
+.hero__fx-layer--a { width: 40%; aspect-ratio: 1; right: -24%; top: 2%; }
+.hero__fx-layer--a .hero__fx-blob { background: linear-gradient(135deg, #FED7AA, #FB923C); }
+.hero__fx-layer--b { width: 22%; aspect-ratio: 1; left: -16%; bottom: 8%; }
+.hero__fx-layer--c { display: none; }
+.hero__photo, .badge { z-index: 1; }
+
+/* Facts: one solid orange band instead of four boxes */
+.bento { gap: 0; background: var(--accent-soft); border-top: 4px solid var(--accent); border-radius: var(--r-lg); overflow: hidden; }
+.bento__item, .bento__item--dark {
+  background: transparent; border: 0; border-radius: 0; box-shadow: none; padding: 1.5rem 1.4rem;
+}
+.bento__item:nth-child(even) { border-left: 1px solid rgba(21, 44, 73, .12); }
+.bento__item:nth-child(n+3) { border-top: 1px solid rgba(21, 44, 73, .12); }
+.bento__icon, .bento__item--dark .bento__icon { background: none; color: var(--accent-deep); width: auto; height: auto; place-items: start; }
+.bento__value, .bento__item--dark .bento__value { color: var(--ink-strong); }
+.bento__value small { color: var(--ink-strong); }
+.bento__label, .bento__item--dark .bento__label { color: var(--ink-strong); }
+
+/* Role cards and leadership: flat columns with a top bar */
+.role-card { overflow: hidden; background: none; border: 0; border-top: 4px solid var(--rule); border-radius: 0; box-shadow: none; padding: 1.4rem 0 0; }
+.role-card::before {
+  content: ""; position: absolute; inset: -4px 0 auto 0; height: 4px;
+  background: var(--accent); transform: scaleX(.18); transform-origin: 0 50%;
+  transition: transform .4s var(--ease);
+}
+.role-card:hover::before { transform: scaleX(1); }
+.role-card:hover { border-top-color: var(--rule); }
+.role-card__icon, .chapter__icon, .skill-card__icon, .lead-card__icon {
+  background: none; box-shadow: none; width: auto; height: auto; place-items: start; color: var(--accent-deep);
+}
+.role-card__step { color: var(--accent); opacity: .5; }
+.role-card__more { color: var(--accent-deep); }
+
+.lead-card { background: none; border: 0; border-left: 4px solid var(--accent); border-radius: 0; padding: .2rem 0 .2rem 1rem; }
+
+.section--tint { background: var(--bg); }
+.chapter__label { color: var(--accent-deep); }
+
+/* Case studies: flat sections, one orange callout each */
+.case { background: none; border: 0; border-top: 4px solid var(--ink); border-radius: 0; box-shadow: none; padding: 1.5rem 0 0; }
+.chips { gap: .2rem .55rem; }
+.chip { background: none; padding: 0; border-radius: 0; color: var(--accent-deep); font-weight: 700; }
+.chip + .chip::before { content: "/"; margin-right: .55rem; color: var(--ink-soft); font-weight: 400; }
+.case__role { color: var(--accent-deep); }
+.kpi { background: none; border: 0; border-bottom: 3px solid var(--accent); border-radius: 0; padding: 0 0 .55rem; }
+.flow li { background: none; border: 0; padding: 0; }
+.flow li::before { background: var(--accent-deep); }
+.flow li:not(:last-child)::after { color: var(--accent); }
+.case__value { background: var(--accent-soft); border: 0; border-left: 4px solid var(--accent); border-radius: 0 var(--r) var(--r) 0; padding: 1rem 1.25rem; }
+.case__value-label { color: var(--accent-ink); }
+.case__value p:last-child { color: var(--ink-strong); }
+.case__more summary:hover { background: var(--accent-tint); border-color: var(--accent); }
+.case__list li::marker { color: var(--accent); }
+.case__link { text-decoration-color: var(--accent); }
+.tags { gap: .2rem .6rem; }
+.tag { background: none; border: 0; border-radius: 0; padding: 0; }
+.tag + .tag::before { content: "·"; margin-right: .6rem; color: var(--accent); font-weight: 700; }
+
+.skill-card { background: none; border: 0; border-top: 4px solid var(--accent); border-radius: 0; box-shadow: none; padding: 1.25rem 0 0; }
+
+/* Contact: the dominant orange block */
+.contact { background: var(--accent-soft); color: var(--ink-strong); }
+.contact::before { display: none; }
+.contact::after { background-image: radial-gradient(var(--accent) 1.3px, transparent 1.3px); opacity: .35; }
+.kicker--light, .contact__title, .contact__lead, .contact__email, .contact__links a { color: var(--ink-strong); }
+.contact__email, .contact__email:hover { text-decoration-color: var(--ink-strong); color: var(--ink-strong); }
+.kicker--light { color: var(--accent-deep); }
+.contact__links a { border-color: rgba(21, 44, 73, .28); }
+.contact__links a:hover { color: var(--ink-strong); background: rgba(21, 44, 73, .1); border-color: var(--ink-strong); }
+.contact .button { background: var(--ink-strong); color: #fff; box-shadow: none; }
+.contact .button:hover { background: #0F2037; color: #fff; }
+.contact :focus-visible { outline-color: var(--ink-strong); }
+.site-footer { border-top: 4px solid var(--accent); }
+
+@media (min-width: 640px) {
+  .bento__item:nth-child(n) { border-top: 0; }
+  .bento__item:nth-child(n+2) { border-left: 1px solid rgba(21, 44, 73, .12); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes fx-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
+  @keyframes fx-rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+  .hero__fx-layer--a .hero__fx-blob { animation: fx-float 7s ease-in-out infinite; }
+  .hero__fx-layer--b .hero__fx-blob { animation: fx-float 5s ease-in-out -2s infinite; }
+  .badge--top { animation: fx-float 6s ease-in-out infinite; }
+  .badge--bottom { animation: fx-float 6.5s ease-in-out -3s infinite; }
+  .hero__text > * { animation: fx-rise .7s var(--ease) both; }
+  .hero__text > :nth-child(2) { animation-delay: .08s; }
+  .hero__text > :nth-child(3) { animation-delay: .16s; }
+  .hero__text > :nth-child(4) { animation-delay: .24s; }
+  .hero__visual { animation: fx-rise .8s var(--ease) .15s both; }
+  html.motion-ok .section__title::after { transform: scaleX(0); transform-origin: 0 50%; transition: transform .6s var(--ease) .2s; }
+  html.motion-ok .section__header.is-visible .section__title::after { transform: scaleX(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero__fx { display: none; }
+}
+
+/* ==========================================================================
+   Polish (v9): one type scale, tidy rhythm, aligned case studies
+   ========================================================================== */
+p, li { text-wrap: pretty; }
+h1, h2, h3 { text-wrap: balance; }
+
+.kicker, .chapter__label, .label, .case__value-label {
+  font-size: .75rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+}
+.label { color: var(--accent-deep); }
+.kicker { margin-bottom: .75rem; }
+.chapter__label { margin-bottom: .1rem; }
+
+.lead { max-width: 58ch; line-height: 1.7; }
+.section__intro, .chapter__narrative { max-width: 60ch; line-height: 1.7; }
+.section { padding: clamp(3.5rem, 7vw, 5.5rem) 0; }
+.section__header { margin-bottom: clamp(2rem, 4vw, 3rem); }
+.chapter + .chapter { margin-top: clamp(3.5rem, 6vw, 5rem); }
+.chapter__header { margin-bottom: 1.5rem; }
+
+.intro__section { margin-top: clamp(3rem, 6vw, 4.5rem); }
+.intro__heading { margin-bottom: 1.25rem; padding-bottom: .75rem; border-bottom: 1px solid var(--rule); }
+.intro__note { font-size: .9rem; }
+
+.role-cards { gap: 2rem; }
+.role-card__step { font-size: 1.5rem; }
+.role-card__name { font-size: 1.1rem; }
+.role-card__desc { line-height: 1.65; }
+.lead-cards { gap: 1.25rem 2rem; }
+
+.cases { gap: 3rem 3rem; align-items: stretch; }
+.case { align-content: start; }
+.case__body { gap: 1.1rem; }
+.case__title { font-size: 1.4rem; }
+.case__subtitle { margin-top: -.85rem; }
+.case__problem { max-width: 62ch; line-height: 1.7; color: var(--muted); }
+.chip { font-size: .7rem; letter-spacing: .06em; text-transform: uppercase; }
+.kpis { gap: 1.5rem; align-items: stretch; }
+.kpi { justify-content: flex-end; }
+.kpi__value { font-size: clamp(1.5rem, 2.6vw, 1.9rem); }
+.flow { gap: .5rem .7rem; }
+.flow li { font-size: .8rem; }
+.case__more { margin-top: auto; }
+.case__more-body { line-height: 1.7; }
+.case__links { margin-top: .25rem; }
+.gallery { gap: 1rem; }
+
+.skill-cards { gap: 2rem; }
+.skill-card__title { font-size: 1.05rem; margin-bottom: .85rem; }
+
+.bento__item { padding: 1.6rem 1.5rem; }
+.bento__label { line-height: 1.45; }
+.bento__icon { margin-bottom: .75rem; }
+
+.contact { gap: 2.5rem; }
+.contact__lead { line-height: 1.7; }
+.site-footer__inner { padding-top: 1.75rem; padding-bottom: 1.75rem; }
+
+/* ==========================================================================
+   Refinements (v10)
+   ========================================================================== */
+/* No orange dot in the hero name pill, no dash before small labels */
+.hero__dot { display: none; }
+.kicker::before { display: none; }
+
+/* Facts: four separate boxes, one soft orange, no borders */
+.bento { gap: 1rem; background: none; border: 0; border-radius: 0; overflow: visible; }
+.bento .bento__item:nth-child(n) {
+  background: var(--accent-soft); border: 0; border-radius: var(--r-lg); box-shadow: none; padding: 1.5rem;
+}
+
+/* Role numbers: bold and orange */
+.role-card__step { font-size: 1.75rem; font-weight: 800; color: var(--accent-hover); opacity: 1; }
+
+/* Leadership: one row, plain white columns */
+.lead-card { background: #fff; border: 0; border-radius: 0; padding: 0; }
+.lead-card__icon { background: none; }
+
+/* Project description text matches the role description */
+.case__subtitle, .case__role, .case__problem {
+  font-size: .925rem; font-weight: 400; line-height: 1.65; color: var(--muted);
+}
+.case__role { gap: .45rem; }
+
+/* Business value: one colour, rounded on all four sides, no border, larger label */
+.case__value { background: var(--accent-soft); border: 0; border-radius: var(--r); padding: 1.1rem 1.3rem; }
+.case__value-label { font-size: 1.05rem; font-weight: 700; letter-spacing: 0; text-transform: none; color: var(--ink-strong); margin-bottom: .35rem; }
+
+@media (min-width: 640px) {
+  .lead-cards { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; }
+}
+
+/* Skills: aligned single-column bullet lists */
+.skill-card .tags { display: grid; grid-template-columns: 1fr; gap: .6rem; list-style: none; }
+.skill-card .tag {
+  position: relative; padding: 0 0 0 1.1rem; font-size: .9rem; line-height: 1.45; color: var(--ink);
+  overflow-wrap: anywhere;
+}
+.skill-card .tag::before {
+  content: ""; position: absolute; left: 0; top: .5em; width: .42rem; height: .42rem; margin: 0;
+  border-radius: 50%; background: var(--accent);
+}
+.skill-card .tag + .tag::before { content: ""; margin: 0; }
+.skill-card__title { padding-bottom: .85rem; border-bottom: 1px solid var(--rule); }
+.skill-card .tags { margin-top: .9rem; }
 
 /* ==========================================================================
    Breakpoints
