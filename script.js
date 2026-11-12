@@ -3,10 +3,46 @@
    Every number below must have a VERIFIED row in FACTS.md.
    Any text containing "[TODO: ...]" is highlighted on the page.
 
-   The page reads as a story in chapters:
-   intro → Chapter 1 (Data & BI) → Chapter 2 (ML Engineer)
-   → Chapter 3 (Data Scientist) → skills → contact.
+   The page: hero → role picker (3 roles, skills on each card) → contact.
    ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   THEME: light or dark. Saved choice wins; otherwise follow the system.
+   Applied at once so the page does not flash on load.
+   -------------------------------------------------------------------------- */
+const THEME_KEY = "theme";
+
+function readTheme() {
+  let saved = null;
+  try { saved = localStorage.getItem(THEME_KEY); } catch (e) { /* storage blocked */ }
+  if (saved === "light" || saved === "dark") return saved;
+  const dark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+  return dark ? "dark" : "light";
+}
+
+function applyTheme(theme) {
+  document.documentElement.setAttribute("data-theme", theme);
+  const meta = document.querySelector('meta[name="theme-color"]');
+  if (meta) meta.setAttribute("content", theme === "dark" ? "#0A1424" : "#F6F8FB");
+  const button = document.getElementById("theme-toggle");
+  if (button) {
+    button.setAttribute("aria-pressed", String(theme === "dark"));
+    button.setAttribute("aria-label", theme === "dark" ? "Switch to light theme" : "Switch to dark theme");
+  }
+}
+
+applyTheme(readTheme());
+
+function initThemeToggle() {
+  const button = document.getElementById("theme-toggle");
+  if (!button) return;
+  applyTheme(readTheme());
+  button.addEventListener("click", () => {
+    const next = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    try { localStorage.setItem(THEME_KEY, next); } catch (e) { /* storage blocked */ }
+    applyTheme(next);
+  });
+}
 
 /* --------------------------------------------------------------------------
    ICONS: Lucide-style strokes (24×24). Decorative only (aria-hidden).
@@ -24,6 +60,11 @@ const ICONS = {
   arrow: '<path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>',
   chevron: '<path d="m6 9 6 6 6-6"/>',
   external: '<path d="M7 17 17 7"/><path d="M7 7h10v10"/>',
+  x: '<path d="M18 6 6 18"/><path d="m6 6 12 12"/>',
+  sun: '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>',
+  moon: '<path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>',
+  copy: '<rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>',
+  check: '<path d="M20 6 9 17l-5-5"/>',
   flag: '<path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><path d="M4 22v-7"/>',
 };
 
@@ -44,7 +85,7 @@ const ROLES = [
     roleName: "Data & Business Intelligence",
     summary: "Data modeling, ETL, and dashboards that turn operational data into decisions.",
     narrative:
-      "Most decisions start with data that is hard to query. In these projects I shape the data model, move the data through ETL, and put the result on a dashboard that the people who act on it can read.",
+      "Most decisions start with data that is hard to query. I shape the data model, run the ETL, and put the result on a dashboard people can act on.",
   },
   {
     id: "mle",
@@ -53,9 +94,9 @@ const ROLES = [
     chapter: "Chapter 2",
     title: "Putting models to work",
     roleName: "Machine Learning Engineer",
-    summary: "Serving models behind APIs, containerized setups, and reproducible training pipelines.",
+    summary: "Model serving behind APIs, containerized setups, and reproducible training.",
     narrative:
-      "A model only helps once something can call it, or once it is trained against a real deadline. Here my part is the engineering around the model: the API that serves it, the environment that starts it, and the training run that has to finish on time.",
+      "A model only helps once something can call it. My part is the engineering around it: the API, the environment, and the training run that must finish on time.",
   },
   {
     id: "ds",
@@ -64,9 +105,9 @@ const ROLES = [
     chapter: "Chapter 3",
     title: "Asking honest questions of data",
     roleName: "Data Scientist",
-    summary: "Statistical analysis and predictive modeling, evaluated honestly against held-out data.",
+    summary: "Statistical analysis and predictive modeling, evaluated on held-out data.",
     narrative:
-      "This is where I am heading. These projects start from the question: what exactly to predict, how to measure it without fooling myself, and what the numbers do and do not say.",
+      "Where I am heading. These projects start with one question: what to predict, how to measure it honestly, and what the numbers do and do not say.",
   },
 ];
 
@@ -87,7 +128,7 @@ const PROJECTS = [
     ],
     flow: ["MySQL source", "ETL: Pentaho + Python", "Star schema", "BIRCH + forecast", "Dashboard"],
     problem:
-      "Inspection data was locked in a transactional database. The quality team could not compare machines quickly or see where defect rates were heading, so maintenance was decided after defects had already piled up.",
+      "Inspection data sat in a transactional database. The quality team could not compare machines or see where defect rates were heading, so maintenance came after defects piled up.",
     myRole: "Data Scientist",
     scope: [
       "Designed a star-schema data warehouse: one fact table, fakta_pemeriksaan_qc (about 90,000 rows, one inspection report per production batch), and six dimensions, so quality data can be queried quickly in one place.",
@@ -101,7 +142,7 @@ const PROJECTS = [
       { decision: "Thresholds and cluster count set by the user.", why: "The quality team decides what counts as Good, Warning, or Critical, and how finely to segment machines, without changing code." },
     ],
     outcome: {
-      text: "Maintenance teams get an objective basis for prioritization: which machines drive defects, which risk segment they fall in, and where their defect rates are heading. The findings were written up as a scientific journal manuscript.",
+      text: "Maintenance teams get an objective basis for prioritization: which machines drive defects, their risk segment, and where defect rates are heading. Written up as a journal manuscript.",
       evidence: "Defect forecast error: CV MAPE 10.96%, MAE 0.008469 (walk-forward cross-validation).",
       source: "CV; forecast numbers from notebook",
     },
@@ -132,7 +173,7 @@ const PROJECTS = [
     ],
     flow: ["Complaint in", "Anonymize", "Classify + urgency", "Route to 14 units", "Leadership dashboard"],
     problem:
-      "Complaints arrived unstructured across many channels. Leaders could not see what was urgent, who owned it, or what kept recurring, and staff triaged every report by hand.",
+      "Complaints arrived unstructured from many channels. Leaders could not see what was urgent, who owned it, or what kept recurring; staff triaged by hand.",
     myRole: "Project Manager & NLP Engineer",
     scope: [
       "Led the 3-person team as project manager, from problem framing and scope definition through delivery.",
@@ -147,7 +188,7 @@ const PROJECTS = [
       { decision: "Build on synthetic data while real data is requested.", why: "The team could deliver a working prototype without waiting for data access." },
     ],
     outcome: {
-      text: "A pilot-ready prototype: in one dashboard, leaders see what is urgent, which unit owns it, what keeps recurring, and whether response deadlines are being met.",
+      text: "A pilot-ready prototype: one dashboard shows what is urgent, which unit owns it, what recurs, and whether deadlines are met.",
       source: "CV",
     },
     tags: ["Local LLM (Ollama)", "FastAPI", "PostgreSQL + pgvector", "CodeIgniter 4", "Docker"],
@@ -166,7 +207,7 @@ const PROJECTS = [
     ],
     flow: ["Order data", "Risk · Forecast · AHP", "FastAPI", "PostgreSQL log", "Planner"],
     problem:
-      "Delivery risk, demand planning, and supplier choice were handled separately and by hand, so late shipments were noticed only after they happened and stock decisions were made without a shared forecast.",
+      "Delivery risk, demand planning, and supplier choice were handled separately and by hand, so late shipments were noticed too late and stock decisions had no shared forecast.",
     myRole: "AI Engineer",
     scope: [
       "Built with a team of 3. My part was the backend; the models and frontend were built by a team partner.",
@@ -179,7 +220,7 @@ const PROJECTS = [
       { decision: "Supplier ranking with AHP (team decision).", why: "Replaces intuition with weighted criteria that stakeholders can see and challenge: on-time delivery, profit margin, sales volume, and discount efficiency." },
     ],
     outcome: {
-      text: "Delivery-delay risk can be spotted and acted on earlier, and planners can adjust stock two weeks ahead, before overstock or stockouts happen. The project was documented with architecture documentation, a technical pitch deck, and a formal project report.",
+      text: "Delivery-delay risk is spotted earlier, and planners can adjust stock two weeks ahead, before overstock or stockouts. Documented with architecture docs, a pitch deck, and a project report.",
       evidence: "When the model flags a shipment as late it is right 77.23% of the time and catches 62.98% of late shipments (test set, AUC-ROC 0.7560). Demand forecast R² 0.9742.",
       source: "CV; metrics from project README",
     },
@@ -231,7 +272,7 @@ const PROJECTS = [
     ],
     flow: ["140k+ observations", "Split first", "Rebalance", "Calibrated XGBoost", "Rain warning"],
     problem:
-      "Farmers need to know whether it will rain tomorrow, and how the season will look, to time planting and fertilizing and to plan around weather-driven crop-failure risk.",
+      "Farmers need to know if it will rain tomorrow and how the season will look, to time planting and fertilizing and plan around crop-failure risk.",
     myRole: "Data Scientist",
     scope: [
       "Built a rain-prediction pipeline on 140,000+ daily weather observations.",
@@ -265,7 +306,7 @@ const PROJECTS = [
     ],
     flow: ["Screenshots", "Color mask", "EasyOCR", "Title match", "LambdaRank", "Next click"],
     problem:
-      "Predict which link a user clicks next on the way to a target article. The link data existed only as page screenshots, links were sparse, and many articles never appeared in training.",
+      "Predict which link a user clicks next on the way to a target article. Links existed only as screenshots, were sparse, and many articles never appeared in training.",
     myRole: "Machine Learning Engineer",
     scope: [
       "Built a two-pass OCR pipeline: a fast color-mask scan to find link regions, then batched EasyOCR on the cropped regions.",
@@ -329,29 +370,6 @@ function renderText(value) {
 }
 
 /* --------------------------------------------------------------------------
-   Role cards (intro)
-   -------------------------------------------------------------------------- */
-function renderRoleCards() {
-  const list = document.getElementById("role-cards");
-  if (!list) return;
-  list.innerHTML = ROLES.map((role, i) => {
-    const count = PROJECTS.filter((p) => p.role === role.id).length;
-    return `
-      <li class="reveal">
-        <a class="role-card" href="#group-${role.id}">
-          <span class="role-card__top">
-            <span class="role-card__icon">${icon(role.icon, 22)}</span>
-            <span class="role-card__step">${String(i + 1).padStart(2, "0")}</span>
-          </span>
-          <span class="role-card__name">${escapeHtml(role.roleName)}</span>
-          <span class="role-card__desc">${escapeHtml(role.summary)}</span>
-          <span class="role-card__more">${count} case ${count === 1 ? "study" : "studies"} ${icon("arrow", 16)}</span>
-        </a>
-      </li>`;
-  }).join("");
-}
-
-/* --------------------------------------------------------------------------
    Case-study cards
    -------------------------------------------------------------------------- */
 function renderKpis(kpis) {
@@ -389,16 +407,13 @@ function renderGallery(shots) {
 }
 
 function renderCase(project) {
-  const chips = [...project.context, project.dataset]
-    .filter(Boolean)
-    .map((c) => `<li class="chip">${renderText(c)}</li>`)
-    .join("");
   const scope = project.scope.map((item) => `<li>${renderText(item)}</li>`).join("");
   const decisions = (project.decisions || [])
     .map((d) => `<li><strong>${renderText(d.decision)}</strong> ${renderText(d.why)}</li>`)
     .join("");
   const tags = project.tags.map((t) => `<li class="tag">${escapeHtml(t)}</li>`).join("");
   const media = project.screenshots ? `<div class="case__media">${renderGallery(project.screenshots)}</div>` : "";
+  const context = (project.context || []).filter(Boolean);
 
   const links = [
     `<a class="case__link" href="${escapeHtml(project.repo)}" target="_blank" rel="noopener">Repository ${icon("external", 16)}<span class="visually-hidden"> for ${escapeHtml(project.title)} (opens in a new tab)</span></a>`,
@@ -407,89 +422,270 @@ function renderCase(project) {
       : "",
   ].join("");
 
+  const more = decisions || project.schema || project.outcome.evidence
+    ? `
+          <details class="case__more">
+            <summary><span>Decisions and evidence</span>${icon("chevron", 18)}</summary>
+            <div class="case__more-body">
+              ${decisions ? `<h5>Key decisions</h5><ul class="decisions">${decisions}</ul>` : ""}
+              ${project.schema ? `<h5>Data model</h5>${renderSchemaFacts(project.schema)}` : ""}
+              ${project.outcome.evidence ? `<h5>Evidence</h5><p class="case__evidence">${renderText(project.outcome.evidence)}</p>` : ""}
+              <p class="case__source">Source: ${renderText(project.outcome.source)}</p>
+            </div>
+          </details>`
+    : "";
+
   return `
-    <article class="case${media ? " case--wide" : ""} reveal" id="project-${project.id}" aria-labelledby="title-${project.id}">
-      <div class="case__body">
-        <div class="case__col">
-        <ul class="chips" aria-label="Project context">${chips}</ul>
+    <article class="case reveal" id="project-${project.id}" aria-labelledby="title-${project.id}">
+      <header class="case__head">
         <h4 class="case__title" id="title-${project.id}">${escapeHtml(project.title)}</h4>
         <p class="case__subtitle">${escapeHtml(project.subtitle || "")}</p>
-        <p class="case__role">${icon("user", 16)}<span>${renderText(project.myRole)}</span></p>
+      </header>
 
-        ${renderKpis(project.kpis)}
+      <div class="case__grid">
+        <div class="case__main">
+          ${renderKpis(project.kpis)}
 
-        <p class="case__problem">${renderText(project.problem)}</p>
-        </div>
-        <div class="case__col">
-        ${renderFlow(project.flow)}
-
-        <div class="case__value">
-          <p class="case__value-label">Business value</p>
-          <p>${renderText(project.outcome.text)}</p>
-        </div>
-
-        <details class="case__more">
-          <summary><span>Read the case study</span>${icon("chevron", 18)}</summary>
-          <div class="case__more-body">
-            <h5>What I built</h5>
-            <ul class="case__list">${scope}</ul>
-            ${decisions ? `<h5>Key decisions</h5><ul class="decisions">${decisions}</ul>` : ""}
-            ${project.schema ? `<h5>Data model</h5>${renderSchemaFacts(project.schema)}` : ""}
-            ${project.outcome.evidence ? `<h5>Evidence</h5><p class="case__evidence">${renderText(project.outcome.evidence)}</p>` : ""}
-            <p class="case__source">Source: ${renderText(project.outcome.source)}</p>
-            <h5>Stack</h5>
-            <ul class="tags">${tags}</ul>
+          <div class="case__block">
+            <p class="case__label">The problem</p>
+            <p class="case__problem">${renderText(project.problem)}</p>
           </div>
-        </details>
 
-        <div class="case__links">${links}</div>
+          <div class="case__block">
+            <p class="case__label">What I built</p>
+            <ul class="case__list">${scope}</ul>
+          </div>
+
+          <div class="case__block">
+            <p class="case__label">How it works</p>
+            ${renderFlow(project.flow)}
+          </div>
+
+          <div class="case__value">
+            <p class="case__value-label">Business value</p>
+            <p>${renderText(project.outcome.text)}</p>
+          </div>
+          ${more}
         </div>
+
+        <aside class="case__aside" aria-label="Project facts for ${escapeHtml(project.title)}">
+          <p class="case__label">Project facts</p>
+          <dl class="case__facts">
+            <div><dt>My role</dt><dd>${renderText(project.myRole)}</dd></div>
+            ${context.length ? `<div><dt>Context</dt><dd>${context.map(renderText).join(" · ")}</dd></div>` : ""}
+            <div><dt>Data</dt><dd>${renderText(project.dataset)}</dd></div>
+            <div><dt>Stack</dt><dd><ul class="tags">${tags}</ul></dd></div>
+          </dl>
+          <div class="case__links">${links}</div>
+        </aside>
       </div>
       ${media}
     </article>`;
 }
 
-function renderChapters() {
-  const container = document.getElementById("project-groups");
-  if (!container) return;
-  container.innerHTML = ROLES.map((role) => {
-    const projects = PROJECTS.filter((p) => p.role === role.id);
-    // In a two-column grid, a regular card left alone on its row spans the full width.
-    const regular = projects.filter((p) => !p.screenshots);
-    const solo = regular.length % 2 === 1 ? regular[regular.length - 1].id : null;
-    const cases = projects
-      .map((p) => renderCase(p).replace('class="case ', `class="case${p.id === solo ? " case--solo" : ""} `))
-      .join("");
+/* --------------------------------------------------------------------------
+   Role picker: three role cards side by side, each with its skills. Choosing
+   a card opens its panel (narrative + case studies) below. Closed until the
+   viewer picks a role. Deep links: #role-bi, #role-mle, #role-ds, #project-<id>.
+   -------------------------------------------------------------------------- */
+const SKILL_PREVIEW = 6;
+let activeRoleId = null;
+
+function roleSkills(roleId) {
+  const group = SKILL_GROUPS.find((g) => g.role === roleId);
+  return group ? group.items : [];
+}
+
+function renderRolePicker() {
+  const picker = document.getElementById("role-picker");
+  if (!picker) return;
+  picker.innerHTML = ROLES.map((role, i) => {
+    const count = PROJECTS.filter((p) => p.role === role.id).length;
+    const skills = roleSkills(role.id);
+    const shown = skills.slice(0, SKILL_PREVIEW);
+    const extra = skills.length - shown.length;
+    const skillItems = shown.map((s) => `<li>${escapeHtml(s)}</li>`).join("")
+      + (extra > 0 ? `<li class="role-pick__more-skills">+${extra}</li>` : "");
     return `
-      <section class="chapter" id="group-${role.id}" aria-labelledby="group-title-${role.id}">
-        <header class="chapter__header reveal">
-          <span class="chapter__icon">${icon(role.icon, 26)}</span>
-          <div>
-            <p class="chapter__label">${escapeHtml(role.chapter)} · ${escapeHtml(role.roleName)}</p>
-            <h3 class="chapter__title" id="group-title-${role.id}">${escapeHtml(role.title)}</h3>
-            <p class="chapter__narrative">${escapeHtml(role.narrative)}</p>
+      <div class="role-pick reveal" data-role="${role.id}">
+        <div class="role-pick__inner">
+          <div class="role-pick__top">
+            <span class="role-pick__icon">${icon(role.icon, 22)}</span>
+            <span class="role-pick__step">${String(i + 1).padStart(2, "0")}</span>
           </div>
-        </header>
-        <div class="cases">${cases}</div>
-      </section>`;
+          <h3 class="role-pick__name">${escapeHtml(role.roleName)}</h3>
+          <p class="role-pick__desc">${escapeHtml(role.summary)}</p>
+          <ul class="role-pick__skills" aria-label="Skills for ${escapeHtml(role.roleName)}">${skillItems}</ul>
+          <p class="role-pick__count">${count} case ${count === 1 ? "study" : "studies"} ${icon("arrow", 16)}</p>
+        </div>
+        <button type="button" class="role-pick__toggle" data-role="${role.id}"
+                aria-expanded="false" aria-controls="role-panel">
+          <span class="visually-hidden">Show projects for ${escapeHtml(role.roleName)}</span>
+        </button>
+      </div>`;
   }).join("");
 }
 
+function renderRolePanel(role) {
+  const projects = PROJECTS.filter((p) => p.role === role.id);
+  const cases = projects.map((p) => renderCase(p).replace('class="case reveal"', 'class="case"')).join("");
+  return `
+    <div class="role-panel__head">
+      <span class="chapter__icon">${icon(role.icon, 26)}</span>
+      <div class="role-panel__text">
+        <p class="role-panel__label">${escapeHtml(role.roleName)}</p>
+        <h3 class="role-panel__title" id="role-panel-title" tabindex="-1">${escapeHtml(role.title)}</h3>
+        <p class="role-panel__narrative">${escapeHtml(role.narrative)}</p>
+      </div>
+      <button type="button" class="role-panel__close" aria-label="Close projects">${icon("x", 18)}</button>
+    </div>
+    <div class="cases">${cases}</div>`;
+}
+
+function setActiveRole(roleId, options = {}) {
+  const panel = document.getElementById("role-panel");
+  if (!panel) return;
+  const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  activeRoleId = roleId && roleId !== activeRoleId ? roleId : null;
+
+  document.querySelectorAll(".role-pick").forEach((card) => {
+    const on = card.dataset.role === activeRoleId;
+    card.classList.toggle("is-active", on);
+    card.querySelector(".role-pick__toggle").setAttribute("aria-expanded", String(on));
+    // Restart the flip animation each time this card is chosen.
+    card.classList.remove("is-flip");
+    if (on) {
+      void card.offsetWidth;
+      card.classList.add("is-flip");
+    }
+  });
+
+  if (!activeRoleId) {
+    panel.hidden = true;
+    panel.innerHTML = "";
+    panel.classList.remove("is-open");
+    if (window.history && history.replaceState) history.replaceState(null, "", "#role-project");
+    return;
+  }
+
+  const role = ROLES.find((r) => r.id === activeRoleId);
+  panel.innerHTML = renderRolePanel(role);
+  panel.hidden = false;
+  panel.classList.remove("is-open");
+  void panel.offsetWidth;
+  panel.classList.add("is-open");
+  if (window.history && history.replaceState) history.replaceState(null, "", `#role-${role.id}`);
+
+  if (options.userAction) {
+    const title = document.getElementById("role-panel-title");
+    if (title) title.focus({ preventScroll: true });
+    panel.scrollIntoView({ block: "nearest", behavior: reduce ? "auto" : "smooth" });
+  }
+}
+
+/* Read the hash: #role-<id> opens that role; #project-<id> opens its role and scrolls to it. */
+function roleFromHash() {
+  const hash = decodeURIComponent(location.hash.slice(1));
+  const role = ROLES.find((r) => hash === `role-${r.id}`);
+  if (role) return { roleId: role.id, projectId: null };
+  const project = PROJECTS.find((p) => hash === `project-${p.id}`);
+  return project ? { roleId: project.role, projectId: `project-${project.id}` } : null;
+}
+
+function initRolePicker() {
+  const picker = document.getElementById("role-picker");
+  const panel = document.getElementById("role-panel");
+  if (!picker || !panel) return;
+
+  picker.addEventListener("click", (event) => {
+    const toggle = event.target.closest(".role-pick__toggle");
+    if (toggle) setActiveRole(toggle.dataset.role, { userAction: true });
+  });
+
+  panel.addEventListener("click", (event) => {
+    if (event.target.closest(".role-panel__close")) setActiveRole(null);
+  });
+
+  picker.addEventListener("keydown", (event) => {
+    if (event.key !== "ArrowRight" && event.key !== "ArrowLeft") return;
+    const toggles = Array.from(picker.querySelectorAll(".role-pick__toggle"));
+    const index = toggles.indexOf(document.activeElement);
+    if (index === -1) return;
+    event.preventDefault();
+    const step = event.key === "ArrowRight" ? 1 : -1;
+    toggles[(index + step + toggles.length) % toggles.length].focus();
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && activeRoleId) {
+      setActiveRole(null);
+      const toggle = document.querySelector(`.role-pick__toggle[data-role="${activeRoleId}"]`);
+      if (toggle) toggle.focus();
+    }
+  });
+
+  const initial = roleFromHash();
+  if (initial) {
+    setActiveRole(initial.roleId);
+    if (initial.projectId) {
+      const el = document.getElementById(initial.projectId);
+      if (el) el.scrollIntoView({ block: "start" });
+    }
+  }
+}
+
+/* Tilt the card toward the pointer. Only for fine pointers, and not under reduced motion. */
+function initRoleTilt() {
+  const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const finePointer = window.matchMedia && window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  if (reduce || !finePointer) return;
+  document.querySelectorAll(".role-pick").forEach((card) => {
+    card.addEventListener("pointermove", (e) => {
+      const r = card.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width - 0.5;
+      const y = (e.clientY - r.top) / r.height - 0.5;
+      card.style.setProperty("--rx", `${(-y * 8).toFixed(2)}deg`);
+      card.style.setProperty("--ry", `${(x * 10).toFixed(2)}deg`);
+    });
+    card.addEventListener("pointerleave", () => {
+      card.style.setProperty("--rx", "0deg");
+      card.style.setProperty("--ry", "0deg");
+    });
+  });
+}
+
 /* --------------------------------------------------------------------------
-   Skills
+   Copy the email address. Falls back to selecting the text when the
+   Clipboard API is unavailable (non-secure contexts).
    -------------------------------------------------------------------------- */
-function renderSkills() {
-  const container = document.getElementById("skill-groups");
-  if (!container) return;
-  container.innerHTML = SKILL_GROUPS.map((group) => {
-    const role = ROLES.find((r) => r.id === group.role);
-    return `
-      <div class="skill-card reveal">
-        <span class="skill-card__icon">${icon(role ? role.icon : "layers", 22)}</span>
-        <h3 class="skill-card__title">${escapeHtml(group.title)}</h3>
-        <ul class="tags">${group.items.map((i) => `<li class="tag">${escapeHtml(i)}</li>`).join("")}</ul>
-      </div>`;
-  }).join("");
+function initCopyEmail() {
+  const button = document.getElementById("copy-email");
+  if (!button) return;
+  let timer = 0;
+  button.addEventListener("click", async () => {
+    const text = button.getAttribute("data-copy") || "";
+    let ok = false;
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(text);
+        ok = true;
+      }
+    } catch (e) { ok = false; }
+    if (!ok) {
+      const link = button.parentElement && button.parentElement.querySelector(".contact__email");
+      if (link && window.getSelection) {
+        const range = document.createRange();
+        range.selectNodeContents(link);
+        const sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+      }
+      return;
+    }
+    button.classList.add("is-copied");
+    clearTimeout(timer);
+    timer = setTimeout(() => button.classList.remove("is-copied"), 1800);
+  });
 }
 
 /* --------------------------------------------------------------------------
@@ -565,9 +761,11 @@ function initActiveNav() {
    -------------------------------------------------------------------------- */
 document.addEventListener("DOMContentLoaded", () => {
   renderStaticIcons();
-  renderRoleCards();
-  renderChapters();
-  renderSkills();
+  initThemeToggle();
+  renderRolePicker();
+  initRolePicker();
+  initRoleTilt();
+  initCopyEmail();
   initReveal();
   initReadingProgress();
   initActiveNav();

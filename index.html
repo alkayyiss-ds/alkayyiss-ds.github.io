@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Muhammad Naufal Al Kayyis | Data Professional</title>
   <meta name="description" content="Portfolio of Muhammad Naufal Al Kayyis: data warehousing, ETL, dashboards, machine learning serving, and predictive modeling. D4 Applied Data Science, PENS-EEPIS.">
-  <meta name="theme-color" content="#FFFFFF">
+  <meta name="theme-color" content="#F6F8FB">
 
   <meta property="og:type" content="website">
   <meta property="og:title" content="Muhammad Naufal Al Kayyis | Data Professional">
@@ -15,11 +15,11 @@
   <meta property="og:site_name" content="Muhammad Naufal Al Kayyis">
   <meta name="twitter:card" content="summary">
 
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%231E3A5F'/%3E%3Ctext x='50' y='67' font-size='54' text-anchor='middle' font-family='Arial' font-weight='700' fill='%23F97316'%3EN%3C/text%3E%3C/svg%3E">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230B1F3A'/%3E%3Ctext x='50' y='67' font-size='54' text-anchor='middle' font-family='Arial' font-weight='700' fill='%23FFFFFF'%3EN%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
-  <link rel="stylesheet" href="style.css?v=7.0">
+  <link rel="stylesheet" href="style.css?v=10.0">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -28,14 +28,19 @@
   <header class="site-header">
     <div class="container site-header__inner">
       <a class="brand" href="#about"><span class="brand__mark" aria-hidden="true">N</span>Naufal Al Kayyis</a>
-      <nav aria-label="Main">
-        <ul class="nav">
-          <li><a href="#about">About</a></li>
-          <li><a href="#role-project">Projects</a></li>
-          <li><a href="#skills">Skills</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
+      <div class="site-header__right">
+        <nav aria-label="Main">
+          <ul class="nav">
+            <li><a href="#about">About</a></li>
+            <li><a href="#role-project">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+        <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Switch to dark theme" aria-pressed="false">
+          <span class="theme-toggle__sun" data-icon="sun" data-size="18"></span>
+          <span class="theme-toggle__moon" data-icon="moon" data-size="18"></span>
+        </button>
+      </div>
     </div>
   </header>
 
@@ -45,12 +50,12 @@
       <div class="container">
         <div class="hero">
           <div class="hero__text">
-            <p class="hero__eyebrow"><span class="hero__dot" aria-hidden="true"></span>Muhammad Naufal Al Kayyis <span class="hero__role">Data professional</span></p>
+            <p class="hero__eyebrow">Muhammad Naufal Al Kayyis <span class="hero__role">Data professional</span></p>
             <h1 id="about-title" class="headline">Analytics, data warehousing, and machine learning for <span class="headline__mark">business decisions.</span></h1>
             <p class="lead">
-              I am a D4 Applied Data Science student at Politeknik Elektronika Negeri Surabaya (PENS-EEPIS), graduating in 2028 with a GPA of 3.53/4.00.
-              My core skills are SQL, Python, PostgreSQL data warehousing, ETL, dashboards, predictive modeling, and Docker.
-              I am building toward a Data Scientist role.
+              Applied Data Science student at PENS-EEPIS (D4, class of 2028, GPA 3.53/4.00).
+              I work with SQL, Python, PostgreSQL data warehousing, ETL, dashboards, predictive modeling, and Docker.
+              Goal: a Data Scientist role.
             </p>
             <p class="hero__actions">
               <a class="button" href="#role-project">See the projects <span data-icon="arrow" data-size="20"></span></a>
@@ -59,9 +64,12 @@
           </div>
 
           <div class="hero__visual">
-            <div class="hero__fx" id="hero-fx" aria-hidden="true"></div>
-            <div class="hero__pattern" aria-hidden="true"></div>
-            <img class="hero__photo" src="assets/profile/foto-formal.jpg" alt="Muhammad Naufal Al Kayyis in a black suit and tie, arms crossed" width="640" height="823" fetchpriority="high" decoding="async">
+            <span class="hero__orn hero__orn--ring" aria-hidden="true"></span>
+            <span class="hero__orn hero__orn--dots" aria-hidden="true"></span>
+            <span class="hero__orn hero__orn--dot" aria-hidden="true"></span>
+            <div class="hero__frame">
+              <img class="hero__photo" src="assets/profile/foto-formal.jpg" alt="Muhammad Naufal Al Kayyis in a black suit and tie, arms crossed" width="640" height="823" fetchpriority="high" decoding="async">
+            </div>
             <div class="badge badge--top">
               <span class="badge__icon" data-icon="trophy" data-size="18"></span>
               <span><strong>#64 of 180 teams</strong><small>BDC 2026, Satria Data</small></span>
@@ -98,14 +106,6 @@
 
         <div class="intro__section">
           <div class="intro__heading">
-            <h2 class="label">Three roles, one direction</h2>
-            <p class="intro__note">Each role is a chapter below. The direction is Data Scientist.</p>
-          </div>
-          <ol class="role-cards" id="role-cards"></ol>
-        </div>
-
-        <div class="intro__section">
-          <div class="intro__heading">
             <h2 class="label">Leadership</h2>
           </div>
           <ul class="lead-cards">
@@ -123,22 +123,11 @@
         <header class="section__header reveal">
           <p class="kicker">Case studies</p>
           <h2 id="projects-title" class="section__title">Role &amp; projects</h2>
-          <p class="section__intro">Each card shows the problem, the result in numbers, and how the work flows. Open “Read the case study” for what I built and the decisions behind it. In team projects I describe my own part only.</p>
+          <p class="section__intro">Pick a role to see its skills and case studies. In team projects I describe my own part only.</p>
         </header>
-        <div id="project-groups"></div>
+        <div class="role-picker" id="role-picker"></div>
+        <div class="role-panel" id="role-panel" role="region" aria-label="Projects for the selected role" hidden></div>
         <noscript><p>The project list needs JavaScript. All projects are on <a href="https://github.com/alkayyiss-ds">GitHub</a>.</p></noscript>
-      </div>
-    </section>
-
-    <!-- ============================== SKILLS ============================== -->
-    <section id="skills" class="section" aria-labelledby="skills-title">
-      <div class="container">
-        <header class="section__header reveal">
-          <p class="kicker">Toolbox</p>
-          <h2 id="skills-title" class="section__title">Skills</h2>
-          <p class="section__intro">Tools I have used in the projects above, grouped by role.</p>
-        </header>
-        <div id="skill-groups" class="skill-cards"></div>
       </div>
     </section>
 
@@ -149,11 +138,17 @@
           <div class="contact__text">
             <p class="kicker kicker--light">Contact</p>
             <h2 id="contact-title" class="contact__title">Have a problem that data could answer?</h2>
-            <p class="contact__lead">If one of these projects looks like something you are working on, I would like to hear about it.</p>
+            <p class="contact__lead">If one of these projects looks like your problem, I would like to hear about it.</p>
           </div>
           <div class="contact__actions">
             <a class="button" href="mailto:naufalkayyiss@gmail.com">Email me <span data-icon="arrow" data-size="20"></span></a>
-            <a class="contact__email" href="mailto:naufalkayyiss@gmail.com">naufalkayyiss@gmail.com</a>
+            <div class="contact__email-row">
+              <a class="contact__email" href="mailto:naufalkayyiss@gmail.com">naufalkayyiss@gmail.com</a>
+              <button type="button" class="copy-button" id="copy-email" data-copy="naufalkayyiss@gmail.com">
+                <span class="copy-button__idle"><span data-icon="copy" data-size="14"></span> Copy</span>
+                <span class="copy-button__done"><span data-icon="check" data-size="14"></span> Copied</span>
+              </button>
+            </div>
             <ul class="contact__links">
               <li>
                 <a href="https://github.com/alkayyiss-ds" target="_blank" rel="noopener">
@@ -183,7 +178,7 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js" crossorigin="anonymous"></script>
-  <script src="script.js?v=7.0"></script>
-  <script src="motion.js?v=7.0"></script>
+  <script src="script.js?v=10.0"></script>
+  <script src="motion.js?v=10.0"></script>
 </body>
 </html>

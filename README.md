@@ -5,7 +5,7 @@ Personal portfolio of Muhammad Naufal Al Kayyis. Single static page for GitHub P
 | File | Purpose |
 |---|---|
 | `index.html` | Page structure: About, Role & Projects, Contact |
-| `style.css` | All styles (mobile first; accent `#00B4D8`) |
+| `style.css` | All styles (mobile first). Palette "Navy & Cobalt": navy `#0B1F3A` for headings and solid blocks, one cobalt accent `#1D4ED8` (dark theme `#60A5FA`); all colours are tokens in `:root` |
 | `script.js` | Role list, project list, and rendering |
 | `FACTS.md` | Register of every claim and number on the site, with its source |
 
